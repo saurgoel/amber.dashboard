@@ -1,0 +1,5 @@
+# package manager caches
+node_modules/
+
+# generated files
+build/
