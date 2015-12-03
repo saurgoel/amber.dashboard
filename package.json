@@ -1,0 +1,41 @@
+{
+  "name": "amber.panels",
+  "version": "1.0.0",
+  "description": "Panels Base for getamber.com",
+  "main": "gulpfile.babel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tushar Kant",
+  "license": "ISC",
+  "dependencies": {
+    "assets-webpack-plugin": "^3.2.0",
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-stage-0": "^6.1.18",
+    "backbone": "^1.2.3",
+    "backbone.marionette": "^2.4.4",
+    "backbone.radio": "^1.0.2",
+    "body-parser": "^1.14.1",
+    "child-process-promise": "^1.1.0",
+    "compression": "^1.6.0",
+    "cookie-parser": "^1.4.0",
+    "css-loader": "^0.23.0",
+    "expose-loader": "^0.7.1",
+    "express-session": "^1.12.1",
+    "gulp": "^3.9.0",
+    "gulp-node-inspector": "^0.1.0",
+    "gulp-nodemon": "^2.0.4",
+    "jade": "^1.11.0",
+    "jade-loader": "^0.8.0",
+    "jquery": "^2.1.4",
+    "lodash": "^3.10.1",
+    "minimist": "^1.2.0",
+    "morgan": "^1.6.1",
+    "style-loader": "^0.13.0",
+    "stylus-loader": "^1.4.2",
+    "underscore": "^1.8.3",
+    "webpack": "^1.12.9"
+  }
+}
