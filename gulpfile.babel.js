@@ -12,7 +12,7 @@ import config from './webpack.config';
 
 const argv = minimist(process.argv.slice(2));
 const WATCH = argv.watch ? true : false;
-const PRODUCTION = argv.prod ? true : false;
+const PRODUCTION = process.env.NODE_ENV === 'production' || (argv.prod ? true : false);
 
 
 console.log(`GULP ENV: { watch: ${WATCH}, production: ${PRODUCTION} }`);
@@ -89,15 +89,11 @@ gulp.task('reload', ['server', 'build'], cb => {
       middleware: [
         webpackDevMiddleware(clientbundler, {
           publicPath: config[0].output.publicPath,
-          stats: config[0].stats
+          stats: {colors: true, chunks: false}
         }),
         webpackHotMiddleware(clientbundler)
       ]
-    },
-    files: [
-      'build/public/**/*.css',
-      '!build/public/**/*.js'
-    ]
+    }
   }, cb);
 });
 
