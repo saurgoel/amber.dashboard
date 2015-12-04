@@ -3,9 +3,14 @@ import tpl from './template.jade';
 
 import style from './style.styl';
 
-class HomePageView extends ItemView {
-	template  = tpl;
-	className = 'view-homepage';
-}
+var HomePageView = ItemView.extend({
+	template: tpl,
+	classname: 'view-homepage',
+
+	initialize(){
+		this.listenTo(this, 'render', style.use);
+		this.listenTo(this, 'destroy', style.unuse);
+	}
+});
 
 export default HomePageView;
