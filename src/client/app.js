@@ -1,11 +1,8 @@
-import _ from 'underscore';
-import $ from 'jquery';
 import {Application} from 'marionette';
 import Radio from 'radio';
 
 import AppController from './appController';
 import AppRouter from './appRouter';
-
 
 class App extends Application{
 
@@ -16,11 +13,13 @@ class App extends Application{
 
 		// Disable when using pushState
 		this.handleHref();
+
+		$('body').css('background', '#aaa');
 	}	
 
 	ajaxConfig(){
 		let counter = 0;
-		$.ajaxConfig({
+		$.ajaxSetup({
 			crossdomain: true,
 			beforeStart: ()=> {
 				Radio.trigger('global', 'loader:start');
@@ -73,7 +72,4 @@ class App extends Application{
 	}
 }
 
-
-// Start our app
-let app = window.Amber = new App();
-app.start();
+export default App;
