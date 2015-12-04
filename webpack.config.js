@@ -3,7 +3,6 @@ import webpack from 'webpack';
 import merge from 'lodash/object/merge';
 import AssetsPlugin from 'assets-webpack-plugin';
 
-
 import baseConfig from './config/base.config';
 import dirs from './config/dirs';
 
@@ -19,7 +18,10 @@ var config = baseConfig(env);
 var config_client = merge({}, config, { 
 	target: 'web',
 	entry: {
-		app: './src/client/app',
+		main: [
+			'webpack-hot-middleware/client',
+			'./src/client/index',
+		],
 		vendors: ['jquery', 'underscore', 'backbone', 'marionette', 'radio']
 	},
 	output: {
@@ -60,7 +62,11 @@ var config_client = merge({}, config, {
 					new webpack.optimize.AggressiveMergingPlugin(),
 				] 
 			: []
-		)
+		),
+		...(!is_prod ? [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin(),
+    ] : [])
 	]
 });
 
