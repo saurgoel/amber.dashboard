@@ -18,6 +18,7 @@
     "backbone.marionette": "^2.4.4",
     "backbone.radio": "^1.0.2",
     "body-parser": "^1.14.1",
+    "browser-sync": "^2.10.0",
     "child-process-promise": "^1.1.0",
     "compression": "^1.6.0",
     "cookie-parser": "^1.4.0",
@@ -33,9 +34,12 @@
     "lodash": "^3.10.1",
     "minimist": "^1.2.0",
     "morgan": "^1.6.1",
+    "node-pre-gyp": "^0.6.17",
     "style-loader": "^0.13.0",
     "stylus-loader": "^1.4.2",
     "underscore": "^1.8.3",
-    "webpack": "^1.12.9"
+    "webpack": "^1.12.9",
+    "webpack-dev-middleware": "^1.4.0",
+    "webpack-hot-middleware": "^2.6.0"
   }
 }

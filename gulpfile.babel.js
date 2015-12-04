@@ -1,10 +1,19 @@
 import gulp from 'gulp';
-import webpack from 'webpack';
+
 import minimist from 'minimist';
 import {exec} from 'child-process-promise';
 import nodemon from 'gulp-nodemon';
+import nodeInspector from 'gulp-node-inspector';
+import browserSync from 'browser-sync';
+
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+
 
 import config from './webpack.config';
+
+
 
 
 const argv = minimist(process.argv.slice(2));
@@ -15,8 +24,14 @@ const PRODUCTION = argv.prod ? true : false;
 
 console.log(`GULP ENV: { watch: ${WATCH}, production: ${PRODUCTION} }`);
 
+var src = {
+	public_assets: {},
+	other_assets: {}
+};
 
-gulp.task('default', ['server']);
+var clientbundler, serverbundler;
+
+gulp.task('default', ['reload']);
 
 gulp.task('clean', cb => {
 	var cmd = [
@@ -39,21 +54,60 @@ gulp.task('copy', cb => {
 
 gulp.task('build', ['clean', 'copy', 'webpack:build']);
 
-gulp.task('webpack:build', ['clean'], cb => {
+
+gulp.task('webpack:build', ['clean', 'copy'], cb => {
 	let runCount = 0;
-	let bundler = webpack(config);
+	clientbundler = webpack(config[0]);
+	serverbundler = webpack(config[1]);
 	
 	let onComplete = (err, stats)=>{
 		if (err) return console.error(err);
-
 		console.log(stats.toString({colors: true, chunks: false}))
-		return cb();
+		if (++runCount === 2) return cb();
 	}
-
-	WATCH
-		? bundler.watch(200, onComplete)
-		: bundler.run(onComplete);
+	if (WATCH){
+		clientbundler.watch(200, onComplete)
+		serverbundler.watch(200, onComplete)
+	}
+	else {
+		clientbundler.run(onComplete)
+		serverbundler.run(onComplete)	
+	}
 });
+
+
+
+gulp.task('node-debug',  cb => {
+  gulp.src([]).pipe( nodeInspector({preload:false}) );
+  cb();
+});
+
+
+// Launch BrowserSync development server
+gulp.task('reload', ['server', 'build'], cb => {
+
+  process.on('exit', () => browserSync.exit());
+
+  browserSync({
+    logPrefix: 'Amber: ',
+    open: false, notify: true, https: false,
+    proxy: {
+      target: 'localhost:4200',
+      middleware: [
+        webpackDevMiddleware(clientbundler, {
+          publicPath: config[0].output.publicPath,
+          stats: config[0].stats
+        }),
+        webpackHotMiddleware(clientbundler)
+      ]
+    },
+    files: [
+      'build/public/**/*.css',
+      '!build/public/**/*.js'
+    ]
+  }, cb);
+});
+
 
 gulp.task('server', ['build'], cb => {
 	nodemon({
