@@ -1,5 +1,5 @@
 {
-  "name": "amber.panels",
+  "name": "amber.dashboard",
   "version": "1.0.0",
   "description": "Panels Base for getamber.com",
   "main": "gulpfile.babel.js",
