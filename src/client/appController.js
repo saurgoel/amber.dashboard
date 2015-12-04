@@ -1,7 +1,7 @@
 import {Controller, RegionManager} from 'marionette';
 
 import Header from './views/header/index';
-
+import Sidebar from './views/sidebar/index';
 
 // The elements are rendered through server in base page
 const regions = {
@@ -11,13 +11,14 @@ const regions = {
 }
 
 // Region Manager
-const Manager = new RegionManager({regions, el: 'body'});
+const Manager = new RegionManager({regions, el: '#root'});
 
 class AppController extends Controller {
 	initialize(){
 		
-		// Load HeaderView before any route
+		// Load Defaults
 		Manager.get('Header').show(new Header())
+		Manager.get('Sidebar').show(new Sidebar())
 	}
 
 	// These will be executed when 
