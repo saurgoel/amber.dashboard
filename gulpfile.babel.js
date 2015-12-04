@@ -14,8 +14,6 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from './webpack.config';
 
 
-
-
 const argv = minimist(process.argv.slice(2));
 
 const WATCH = argv.watch ? true : false;
@@ -23,11 +21,6 @@ const PRODUCTION = process.env.NODE_ENV === 'production' || (argv.prod ? true : 
 
 
 console.log(`GULP ENV: { watch: ${WATCH}, production: ${PRODUCTION} }`);
-
-var src = {
-	public_assets: {},
-	other_assets: {}
-};
 
 var clientbundler, serverbundler;
 
@@ -63,7 +56,8 @@ gulp.task('webpack:build', ['clean', 'copy'], cb => {
 	let onComplete = (err, stats)=>{
 		if (err) return console.error(err);
 		console.log(stats.toString({colors: true, chunks: false}))
-		if (++runCount === 2) return cb();
+		runCount += 1;
+		if (runCount === 2) return cb();
 	}
 	if (WATCH){
 		clientbundler.watch(200, onComplete)
@@ -84,7 +78,7 @@ gulp.task('node-debug',  cb => {
 
 
 // Launch BrowserSync development server
-gulp.task('reload', ['server', 'build'], cb => {
+gulp.task('reload', ['node-debug', 'server', 'build'], cb => {
 
   process.on('exit', () => browserSync.exit());
 
