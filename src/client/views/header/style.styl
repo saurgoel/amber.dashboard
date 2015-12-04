@@ -1,2 +1,33 @@
+header-button()
+	color theme_font
+	padding 16px 20px
+	&:hover
+		color color_base
+	&:active
+		color color_base
+		background-color rgba(#000, 0.12)
+
+
+
 .view-header
-	border-bottom 1px black solid
+	background-color #fff
+	
+	border-bottom 1px theme_border solid
+	flex 1
+	flex-container row
+	align-items center
+	
+	.header-spacer
+		flex 1
+	#brand-logo
+		padding 12px 0
+		
+	#sidebar-toggle
+		margin-left (-1*gutter_x)
+		font-size 24px 
+		header-button()
+	
+	ul.navigation
+		width auto
+		inline-list 32px
+		

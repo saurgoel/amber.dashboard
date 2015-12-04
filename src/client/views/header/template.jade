@@ -1,7 +1,14 @@
-ul
-	li
-		a(href='#/dashboard') Dashboard
+include /mixins/icon.jade
+
+#sidebar-toggle
+	+Icon('bars')
+
+a#brand-logo(href='#/') Amber.Dashboard
+
+.header-spacer
+
+ul.navigation
 	li
 		a(href='#/') Home
-
-h4 Amber.Panels
+	li
+		a(href='#/dashboard') Dashboard
