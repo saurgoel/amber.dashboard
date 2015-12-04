@@ -3,6 +3,14 @@ import webpack from 'webpack';
 import merge from 'lodash/object/merge';
 import AssetsPlugin from 'assets-webpack-plugin';
 
+// Stylus deps
+import nib from 'nib';
+import axis from 'axis';
+import autoprefixer from 'autoprefixer-stylus';
+import jeet from 'jeet';
+import rupture from 'rupture';
+
+
 import baseConfig from './config/base.config';
 import dirs from './config/dirs';
 
@@ -11,6 +19,8 @@ const GLOBALS = {
 	'process.env.NODE_ENV': !is_prod ? '"development"' : '"production"',
 	'__DEV__': !is_prod
 };
+
+const JADE_ROOT = path.resolve('./src/jade');
 
 // Get base config for environment
 var config = baseConfig({ is_prod });
@@ -41,8 +51,9 @@ var config_client = merge({}, config, {
 	module: {
 		loaders: [
 			...config.module.loaders,
+			{ test: /\.css$/,  loader: 'style-loader!css-loader' },
 			{ test: /\.styl$/, loader: 'style-loader/useable!css-loader!stylus-loader' },
-			{ test: /\.jade$/, loader: 'jade-loader' },
+			{ test: /\.jade$/, loader: 'jade-loader?root='+JADE_ROOT },
 			{ test: /\.js$/, loader: 'babel-loader', query: {compact: false} },
 			{ test: require.resolve('backbone.marionette'), loader: 'expose?Marionette'},
 			{ test: require.resolve('backbone.radio'), loader: 'expose?Radio' }
@@ -67,7 +78,14 @@ var config_client = merge({}, config, {
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
     ] : [])
-	]
+	],
+	stylus: {
+    use: [nib(), axis(), rupture(), jeet(), autoprefixer({browsers: ['last 2 versions']})],
+    import: [ path.resolve(__dirname, './src/stylus/index.styl') ],
+    error: !is_prod ? true : false,
+    compress: !is_prod ? false: true,
+    'include css': !is_prod ? false : true
+  }
 });
 
 
@@ -102,7 +120,6 @@ var config_server = merge({}, config, {
 		loaders: [
 			...config.module.loaders,
 			{ test: /\.js$/, loader: 'babel-loader' },
-			{ test: /\.styl$/, loader: 'css-loader!stylus-loader' },
 		]
 	},
 	plugins: [
