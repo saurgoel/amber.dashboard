@@ -15,6 +15,7 @@ const Manager = new RegionManager({regions, el: 'body'});
 
 class AppController extends Controller {
 	initialize(){
+		
 		// Load HeaderView before any route
 		Manager.get('Header').show(new Header())
 	}
@@ -24,13 +25,13 @@ class AppController extends Controller {
 	// Load these in 'Content' Region
 	home(){
 		require.ensure([], ()=>{
-			var view = require('./views/home/index');
+			var view = require('./views/home/index').default;
 			Manager.get('Content').show(new view());
 		});
 	}
 	dashboard(){
 		require.ensure([], ()=>{
-			var view = require('./views/dashboard/index');
+			var view = require('./views/dashboard/index').default;
 			Manager.get('Content').show(new view());
 		});
 	}
