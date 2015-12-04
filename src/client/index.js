@@ -12,3 +12,8 @@ window._ = _;
 // Start our app
 let app = window.Amber = new App();
 app.start();
+
+
+if (module.hot){
+	module.hot.accept();
+}

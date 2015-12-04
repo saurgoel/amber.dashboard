@@ -12,8 +12,8 @@ const GLOBALS = {
 	'__DEV__': !is_prod
 };
 
-var env = { is_prod };
-var config = baseConfig(env);
+// Get base config for environment
+var config = baseConfig({ is_prod });
 
 var config_client = merge({}, config, { 
 	target: 'web',

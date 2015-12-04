@@ -13,8 +13,6 @@ class App extends Application{
 
 		// Disable when using pushState
 		this.handleHref();
-
-		$('body').css('background', '#aaa');
 	}	
 
 	ajaxConfig(){
