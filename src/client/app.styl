@@ -1,0 +1,48 @@
+@import '~font-awesome/css/font-awesome.css'
+
+// Normalize vendor styles
+global-reset()
+
+
+body
+	background-color theme_bg
+	font-size font_size
+	font-family font_stack
+	line-height line_height
+		
+	color theme_font
+
+	absolute top left right bottom
+	overflow hidden
+	
+	#root
+		absolute top left right bottom
+		flex-vertical()
+		
+	#app-header
+		flex-basis header_height
+		flex-horizontal()
+		
+	#app-content
+		flex 1
+		flex-container column
+		overflow-y auto
+		transition()
+	#app-sidebar
+		width sidebar_width
+		absolute top header_height left (-1*sidebar_width) bottom
+		flex-vertical()
+		transition()
+		&.is-active
+			left 0
+		&.is-active ~ #app-content
+			margin-left sidebar_width
+	
+
+// Default Link Styles
+a[href]
+	text-decoration none
+	color inherit
+	display inline-block
+	&:hover, &:active, &:focus
+		color inherit

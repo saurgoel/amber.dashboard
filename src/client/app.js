@@ -4,6 +4,8 @@ import Radio from 'radio';
 import AppController from './appController';
 import AppRouter from './appRouter';
 
+import style from './app.styl';
+
 class App extends Application{
 
 	onBeforeStart(){
@@ -13,6 +15,9 @@ class App extends Application{
 
 		// Disable when using pushState
 		this.handleHref();
+
+		// Use our styles
+		style.use();
 	}	
 
 	ajaxConfig(){
