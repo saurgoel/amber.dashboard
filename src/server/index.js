@@ -1,15 +1,11 @@
 import path from 'path';
 import express from 'express';
-
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
-
 import bodyParser from 'body-parser';
 import favicon from 'serve-favicon';
 import morgan from 'morgan';
 import session from 'express-session';
-
-
 import router from './routes';
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production' ? true : false;
@@ -58,7 +54,6 @@ app.use((err, req, res, next)=>{
 	res.send("error: " + err.message + '\nstack: ' + JSON.stringify(err.stack));
 });
 
-
 // Start Server
 const runServer = ()=>{
 	var port = process.env.PORT || 4200;
@@ -66,6 +61,5 @@ const runServer = ()=>{
 		console.log(`Express Server at: Server started at http://localhost:${port}`)
 	})
 }
-
 
 runServer();
