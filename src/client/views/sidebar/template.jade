@@ -1,0 +1,10 @@
+mixin CategoryItem(name, url)
+	li.list-categories-item
+		a(href='#{url}') #{name}
+
+
+//- This will be rendered
+.sidebar-heading Categories
+ul.list-categories
+	each url, name in menus
+		+CategoryItem(name, url)

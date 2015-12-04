@@ -1,0 +1,31 @@
+.view-sidebar
+	background-color #fff
+	border-right 1px theme_border solid 
+	flex 1
+	flex-vertical()
+	
+	.sidebar-heading
+		font-weight bolder
+		font-size 14px
+		margin 8px gutter_x
+	
+	.list-categories
+		list-style none
+		
+	.list-categories-item
+		font-weight lighter
+		color lighten(theme_font, 10%)
+		hover-color color_base true
+		> a
+			margin 4px 0
+			padding 8px gutter_x 8px (gutter_x - 6)
+			box-sizing border-box
+			font-size 18px
+			width 100%
+		> a
+			border-left 6px transparent solid
+		&:hover > a
+			border-left-color rgba(#000, 0.5)
+		&:active > a
+			border-left-color color_base
+			
