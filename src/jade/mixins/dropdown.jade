@@ -1,0 +1,16 @@
+include /mixins/icon.jade
+
+mixin SimpleDropdown(title, is_flat, ddown_id)
+	- is_flat  = _.isUndefined(is_flat) ? '' : '-flat';
+	- ddown_id = _.isUndefined(ddown_id) ? _.uniqueId('dd-') : ddown_id;
+	- title = _.isUndefined(title) ? 'Dropdown' : title;
+	.dropdown-wrapper
+		a(
+			class="dropdown-button btn#{is_flat}"
+			data-activates= ddown_id
+		)
+			span.title #{title}
+			+Icon('navigation-arrow-drop-down')
+		ul.dropdown-content(id = ddown_id)
+			if block 
+				block
