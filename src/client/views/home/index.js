@@ -5,9 +5,10 @@ import style from './style.styl';
 
 var HomePageView = ItemView.extend({
 	template: tpl,
-	classname: 'view-homepage',
+	className: 'view-homepage',
 
 	initialize(){
+		
 		this.listenTo(this, 'render', style.use);
 		this.listenTo(this, 'destroy', style.unuse);
 	}
