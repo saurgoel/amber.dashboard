@@ -1,19 +1,29 @@
 import _ from 'underscore';
 import $ from 'jquery';
+import Radio from 'radio';
 import App from './app';
 
+
+
 // Expose these
-window.$ = $;
+window.$ = window.jQuery = $;
 window._ = _;
 
 
 
-
-// Start our app
 let app = window.Amber = new App();
-app.start();
+
+// Start after fetching config
+fetch('/config')
+	.then( res => res.json() )
+	.then( config => {
+		Radio.reply('global', 'config');
+		app.start(config);
+	})
+	.catch( console.error.bind(console, 'ERROR:\n') )
 
 
 if (module.hot){
 	module.hot.accept();
 }
+
