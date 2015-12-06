@@ -37,6 +37,30 @@ class AppController extends Controller {
 		});
 	}
 
+
+	// Customers Panel
+	customer(){
+		require.ensure([], ()=>{
+			var view = require(`./panels/customer/index`).default;
+			Manager.get('Content').show(new view());
+		})
+	}
+
+	customerLeads(){
+		require.ensure([], ()=>{
+			var view = require(`./panels/customer/leads/index`).default;
+			Manager.get('Content').show(new view());
+		})
+	}
+
+	customerUsers(){
+
+	}
+	
+	customerBeta(){
+		
+	}
+
 }
 
 export default AppController;

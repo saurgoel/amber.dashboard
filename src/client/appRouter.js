@@ -1,8 +1,16 @@
 import Marionette from 'marionette';
 
 const appRoutes = {
+	
 	'(/)': 'home',
-	'dashboard': 'dashboard'
+	'dashboard': 'dashboard',
+	
+	// Customer Panel
+	'customer': 'customer',
+	'customer/leads': 'customerLeads',
+	'customer/users': 'customerUsers',
+	'customer/beta' : 'customerBeta',
+
 }
 
 
