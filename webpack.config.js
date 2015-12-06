@@ -32,7 +32,7 @@ var config_client = merge({}, config, {
 			'webpack-hot-middleware/client',
 			'./src/client/index',
 		],
-		vendors: ['jquery', 'underscore', 'backbone', 'marionette', 'radio']
+		vendors: ['jquery', 'underscore', 'backbone', 'marionette', 'radio', 'hammerjs','materialize-css']
 	},
 	output: {
 		path: dirs.dest_public,
@@ -44,7 +44,7 @@ var config_client = merge({}, config, {
 		modulesDirectories: ['node_modules', 'src/client'],
 		alias: {
 			marionette: 'backbone.marionette',
-			radio: 'backbone.radio'
+			radio: 'backbone.radio',
 		}
 	},
 
@@ -56,13 +56,15 @@ var config_client = merge({}, config, {
 			{ test: /\.jade$/, loader: 'jade-loader?root='+JADE_ROOT },
 			{ test: /\.js$/, loader: 'babel-loader', query: {compact: false} },
 			{ test: require.resolve('backbone.marionette'), loader: 'expose?Marionette'},
-			{ test: require.resolve('backbone.radio'), loader: 'expose?Radio' }
+			{ test: require.resolve('backbone.radio'), loader: 'expose?Radio' },
+			{ test: require.resolve('materialize-css'), loader: 'expose?Materialize' }
 		]
 	},
 
 	plugins: [
 		...config.plugins,
 		new webpack.DefinePlugin(GLOBALS),
+		new webpack.ProvidePlugin({ jQuery: 'jquery', '$': 'jquery'}),
 		new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors-bundle.js'),
 		new AssetsPlugin({ path: dirs.dest_root, filename: 'assets.json' }),
 		...(
