@@ -1,2 +1,10 @@
-mixin Icon(class_name)
-	i(class='fa fa-#{class_name}')
+mixin Icon(icon_name)
+	i(class='mdi-#{icon_name}')
+
+mixin IconWithText(icon_name, text, icon_align = 'left')
+	if icon_align == 'left'
+		+Icon(icon_name)
+		span.icon-text #{text}
+	else
+		span.icon-text #{text}
+		+Icon(icon_name)
