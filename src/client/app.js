@@ -1,13 +1,14 @@
 import {Application} from 'marionette';
 import Radio from 'radio';
 
+import Materialize from 'materialize-css';
+
 import AppController from './appController';
 import AppRouter from './appRouter';
 
 import style from './app.styl';
 
 class App extends Application{
-
 	onBeforeStart(){
 		this.setupBehaviors();
 		this.ajaxConfig();
@@ -38,23 +39,6 @@ class App extends Application{
 	handleHref(){
 		self = this
 		
-		$(document).on('click', 'a[href^="/"]', (e)=>{
-			let href = $(e.currentTarget).attr('href')
-			let passThrough = self.hrefWhiteList.indexOf(href) !== -1
-
-			// Allow shift+click for new tabs, etc.
-			if (!passThrough && !e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey){
-				e.preventDefault() 
-			}
-
-			// Remove leading slashes and hash bangs (backward compatablility)
-			let url = href.replace(/^\//  , '').replace('\#\!\/', '')
-
-			self.Router.navigate(url, {trigger: true})
-			Radio.trigger('global', 'approute:navigate', url)
-
-			return false
-		})
 	}
 
 	setupBehaviors(){

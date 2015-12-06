@@ -1,8 +1,12 @@
-@import '~font-awesome/css/font-awesome.css'
+// @import '~font-awesome/css/font-awesome.css'
+@import '~materialize-css/dist/css/materialize.css'
 
-// Normalize vendor styles
+// Setup Defaults
 global-reset()
-
+html
+  box-sizing border-box
+*, *:before, *:after
+  box-sizing inherit
 
 body
 	background-color theme_bg
@@ -20,23 +24,30 @@ body
 		flex-vertical()
 		
 	#app-header
+		fixed top left right
+		z-index z4
 		flex-basis header_height
 		flex-horizontal()
 		
 	#app-content
 		flex 1
 		flex-container column
+		padding-top header_height
 		overflow-y auto
 		transition()
+	
 	#app-sidebar
 		width sidebar_width
-		absolute top header_height left (-1*sidebar_width) bottom
+		fixed top left (-1*sidebar_width) bottom
+		z-index z6
 		flex-vertical()
 		transition()
 		&.is-active
 			left 0
 		&.is-active ~ #app-content
 			margin-left sidebar_width
+		&.is-active .sidebar-backdrop
+			display block
 	
 
 // Default Link Styles
