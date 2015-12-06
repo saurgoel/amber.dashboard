@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import path from 'path';
 import express from 'express';
 
@@ -11,6 +12,7 @@ import session from 'express-session';
 
 
 import router from './routes';
+import config from '../../config';
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production' ? true : false;
 var app = express();
@@ -42,6 +44,10 @@ app.use('/public', express.static(__dirname + '/public'));
 
 // Apply Router
 app.use(router);
+app.get('/config', (req, res)=>{
+	let blacklist = ['port']
+	res.json(_.omit(config, ...blacklist));
+})
 
 // If requested route is not present in router
 // Handle 404
