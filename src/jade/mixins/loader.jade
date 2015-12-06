@@ -1,0 +1,15 @@
+mixin SpinnerLayer(color)
+	div(class='spinner-layer spinner-#{color}')
+		.circle-clipper.left
+			.circle
+		.gap-patch
+			.circle
+		.circle-clipper.right
+			.circle
+
+mixin Loader()
+	.preloader-wrapper.active
+		+SpinnerLayer('blue')
+		+SpinnerLayer('red')
+		+SpinnerLayer('yellow')
+		+SpinnerLayer('green')
