@@ -1,10 +1,17 @@
+include /mixins/button.jade
+
+
 mixin CategoryItem(name, url)
 	li.list-categories-item
 		a(href='#{url}') #{name}
 
+.sidebar-inner
+	//- This will be rendered
+	.sidebar-heading
+		+IconButton('', 'navigation-arrow-back', 'flat')(class='back-button')
+		Categories
+	ul.list-categories
+		each url, name in menus
+			+CategoryItem(name, url)
 
-//- This will be rendered
-.sidebar-heading Categories
-ul.list-categories
-	each url, name in menus
-		+CategoryItem(name, url)
+.sidebar-backdrop

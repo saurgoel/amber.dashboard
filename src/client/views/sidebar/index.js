@@ -23,6 +23,13 @@ const SidebarView = ItemView.extend({
 	template: tpl,
 	className: 'view-sidebar',
 	model: SidebarModel,
+
+	ui: {
+		backdrop: '.sidebar-backdrop'
+	},
+	events: {
+		'click @ui.backdrop': 'toggleSidebar'
+	},
 	
 	initialize(){
 		this.listenTo(this, 'render' , style.use);

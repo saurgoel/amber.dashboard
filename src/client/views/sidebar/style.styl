@@ -1,13 +1,27 @@
 .view-sidebar
-	background-color #fff
-	border-right 1px theme_border solid 
 	flex 1
 	flex-vertical()
-	
+	.sidebar-inner
+		background-color #fff
+		border-right 1px theme_border solid 
+		flex 1
+		flex-vertical()
+		
+	.sidebar-backdrop
+		fixed top left right bottom
+		display none
+		background-color rgba(#000, 0.36)
+		cursor pointer
+		transition()
+		z-index -1
+
 	.sidebar-heading
 		font-weight bolder
 		font-size 14px
-		margin 8px gutter_x
+		margin-right -1px
+		padding 12px gutter_x
+		color color_font
+		background-color color_base
 	
 	.list-categories
 		list-style none
