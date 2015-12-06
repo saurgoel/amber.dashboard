@@ -6,11 +6,9 @@ flex-horizontal()
 	display flex
 	flex-direction row
 	
-flex-container(direction = row)
+flex-container(direction = row, align_items = 0)
 	display flex
 	flex-direction direction
 	
-	if direction == row
-		padding 0 gutter_x
-	else
-		padding gutter_y 0
+	if align_items
+		align-items align_items
