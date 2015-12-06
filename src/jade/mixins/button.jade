@@ -1,0 +1,15 @@
+include ./icon.jade
+
+
+mixin Button(text, button_type)
+	//- Classnames to apply
+	- var cnames = (button_type === 'flat' ? 'btn-flat': 'btn') + ' waves-effect waves-light'
+	
+	a(class=cnames)&attributes(attributes)
+		| #{text}
+		if block
+			block
+
+mixin IconButton(text, icon, button_type)
+	+Button(text, button_type)
+		+Icon(icon)
