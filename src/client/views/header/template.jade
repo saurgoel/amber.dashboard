@@ -1,14 +1,27 @@
 include /mixins/icon.jade
+include /mixins/list.jade
+include /mixins/dropdown.jade
 
-#sidebar-toggle
-	+Icon('bars')
 
-a#brand-logo(href='#/') Amber.Dashboard
+.main-header
+	#sidebar-toggle
+		+Icon('navigation-menu')
+	#brand-logo
+		a(href='#/') amber&nbsp;&nbsp;: :
+	.service-selector
+		+SimpleDropdown(selectedService, 'flat')
+			each panel in panelsList
+				li
+					a(href= panel.route) #{panel.name}
 
-.header-spacer
+	.header-spacer
 
-ul.navigation
-	li
-		a(href='#/') Home
-	li
-		a(href='#/dashboard') Dashboard
+	ul.navigation
+		li
+			a(href='#/') Home
+		li
+			a(href='#/dashboard') Dashboard
+
+.sub-header
+	span.sub-header-title Title
+	#region-sub-header

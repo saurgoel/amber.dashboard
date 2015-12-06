@@ -1,19 +1,27 @@
 import {ItemView} from 'marionette';
-import tpl from './template.jade';
-
 import Radio from 'radio';
 
+import Model from './model';
+import tpl from './template.jade';
 import style from './style.styl';
+
+
+
+
 
 var HeaderView = ItemView.extend({
 	template: tpl,
 	className: 'view-header',
+	model: new Model(),
 
 	ui: {
-		menuIcon: '#sidebar-toggle'
+		menuIcon: '#sidebar-toggle',
+		ddItem:  '.service-selector .dropdown-content a',
+		ddTitle: '.service-selector .dropdown-button .title'
 	},
 	events: {
-		'click @ui.menuIcon': 'toggleSidebar'
+		'click @ui.menuIcon': 'toggleSidebar',
+		'click @ui.ddItem'  : 'selectService'
 	},
 
 	initialize(){
@@ -23,6 +31,19 @@ var HeaderView = ItemView.extend({
 
 	toggleSidebar(e){
 		Radio.trigger('global', 'sidebar:toggle')
+	},
+	selectService(e){
+		var text = $(e.currentTarget).text();
+		this.ui.ddTitle.text(text);
+		this.model.set('selectedService', text);
+	},
+
+	onAttach(){
+		this.$('.dropdown-button').dropdown({
+			hover: true, 
+			belowOrigin: false,
+			constrainWidth: false
+		});
 	}
 });
 

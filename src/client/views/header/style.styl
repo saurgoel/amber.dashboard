@@ -1,5 +1,5 @@
 header-button()
-	color theme_font
+	color color_font
 	padding 16px 20px
 	&:hover
 		color color_base
@@ -10,17 +10,38 @@ header-button()
 
 
 .view-header
-	background-color #fff
-	
+	color color_font
+	background-color color_base
 	border-bottom 1px theme_border solid
+	flex-container column
 	flex 1
-	flex-container row
-	align-items center
+	shadow()
+	transition()
+	.main-header, .sub-header
+		flex-container row center
+		padding 0 gutter_x
+		transition()
+	.main-header
+		flex-basis main_header_height
+	.sub-header
+		flex-basis sub_header_height
+		
 	
-	.header-spacer
-		flex 1
+		
+// Fills remaining flex area
+.view-header .header-spacer
+	flex 1
+.view-header .main-header
+	padding 0 gutter_x
+	border-bottom 1px theme_border solid
+	shadow()
+	
 	#brand-logo
 		padding 12px 0
+		margin 3px 12px 0 0
+		> a
+			font-size 28px
+			font-weight lighter
 		
 	#sidebar-toggle
 		margin-left (-1*gutter_x)
@@ -31,3 +52,29 @@ header-button()
 		width auto
 		inline-list 32px
 		
+// Sub Header
+.view-header .sub-header
+	.sub-header-title
+		font-weight lighter
+		font-size 24px
+		
+
+
+// Other Mods
+.view-header
+	.btn-flat
+		color inherit
+	.dropdown-button
+		padding 12px 0
+		display inline
+		text-transform lowercase
+		font-size 28px
+		.title
+			margin-right 6px
+			font-weight 100
+	.dropdown-content
+		color theme_font
+		li
+			color inherit
+		a
+			padding-right 48px
