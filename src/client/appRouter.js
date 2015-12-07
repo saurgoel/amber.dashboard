@@ -13,10 +13,17 @@ const appRoutes = {
 
 }
 
+let Global = Radio.channel('global');
 
 class AppRouter extends Marionette.AppRouter {
 	initialize(){
 		this.appRoutes = appRoutes;
+		this.listenTo(Global, 'approuter:navigate', this.gotoRoute);
+		Global.reply('approuter', this);
+	}
+
+	gotoRoute(route){
+		this.navigate(route, {trigger: true})
 	}
 	
 	// Called on every route navigation
