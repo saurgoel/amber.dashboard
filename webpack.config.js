@@ -29,7 +29,7 @@ var config_client = merge({}, config, {
 	target: 'web',
 	entry: {
 		main: [
-			'webpack-hot-middleware/client',
+			...( is_prod ? [] : ['webpack-hot-middleware/client']),
 			'./src/client/index',
 		],
 		vendors: ['jquery', 'underscore', 'backbone', 'marionette', 'radio', 'hammerjs','materialize-css']

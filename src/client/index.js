@@ -7,11 +7,13 @@ import App from './app';
 window.$ = window.jQuery = $;
 window._ = _;
 
-// Marionette Debugger only in dev mode
-if (__DEV__){
-	Radio.DEBUG = true;
-	if (window.__agent) window.__agent.start(Backbone, Marionette);
-}
+// Debug Stuff
+(function(){
+	if (__DEV__){
+		Radio.DEBUG = true;
+		if (window.__agent) window.__agent.start(Backbone, Marionette);
+	}
+})();
 
 
 
