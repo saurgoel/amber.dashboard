@@ -41,18 +41,19 @@
 	.list-categories-item
 		font-weight lighter
 		color lighten(theme_font, 10%)
-		hover-color color_base true
 		height auto
-		> a
-			margin 4px 0
-			padding 8px gutter_x 8px (gutter_x - 6)
-			box-sizing border-box
-			font-size 18px
-			width 100%
-		> a
-			border-left 6px transparent solid
-		&:hover > a
+	
+		padding 8px gutter_x 8px (gutter_x - 6)
+		box-sizing border-box
+		font-size 18px
+		width 100%
+	
+		border-left 6px transparent solid
+		
+		&:hover
+			background-color rgba(#000, 0.1)
 			border-left-color rgba(#000, 0.5)
-		&:active > a
+		&.is-active, &:active
+			background-color rgba(#000, 0.1)
 			border-left-color color_base
 			
