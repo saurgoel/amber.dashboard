@@ -7,12 +7,7 @@ include /mixins/dropdown.jade
 		+Icon('navigation-menu')
 	#brand-logo
 		img.responsive-img(src='/public/white-logo.png')
-	.service-selector
-		+SimpleDropdown(selectedService, 'flat')
-			each panel in panelsList
-				li
-					a(href= panel.route) #{panel.name}
-
+			
 	.header-spacer
 
 	ul.navigation
