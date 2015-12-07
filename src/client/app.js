@@ -27,11 +27,11 @@ class App extends Application{
 			crossdomain: true,
 			beforeStart: ()=> {
 				Radio.trigger('global', 'loader:start');
-				i++;
+				counter++;
 			},
 			complete: ()=>{
-				i--;
-				if (i<1) Radio.trigger('global', 'loader:stop');
+				counter--;
+				if (counter<1) Radio.trigger('global', 'loader:stop');
 			}
 		})
 	}
