@@ -12,10 +12,8 @@ window._ = _;
 
 
 let app = window.Amber = new App();
-
 // Start after fetching config
-fetch('/config')
-	.then( res => res.json() )
+Promise.resolve($.getJSON('/config'))
 	.then( config => {
 		Radio.reply('global', 'config');
 		app.start(config);
