@@ -1,28 +1,15 @@
 import {ItemView} from 'marionette';
-import {Model} from 'backbone';
 import Radio from 'radio';
-
+import Model from './model';
 import tpl from './template.jade';
 import style from './style.styl';
 
 var Channel = Radio.channel('global');
 
-const SidebarModel = new Model({
-	menus:{
-		"Home" : "#/",
-		"Dashboard" : "#/dashboard",
-		"Stylist"   : "#/stylist",
-		"Salon&Spa" : "#/salons",
-		"Services"  : "#/services",
-		"Products"  : "#/products",
-		"Contents"  : "#/contents"
-	}
-});
-
 const SidebarView = ItemView.extend({
 	template: tpl,
 	className: 'view-sidebar',
-	model: SidebarModel,
+	model: new Model(),
 
 	ui: {
 		backbutton: '.sidebar-header .back-button',
