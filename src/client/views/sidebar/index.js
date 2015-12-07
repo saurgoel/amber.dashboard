@@ -32,7 +32,7 @@ const SidebarView = ItemView.extend({
 	selectMenu(e){
 		let route = e.currentTarget.getAttribute('data-route');
 		this.model.selectMenu({route});
-		Backbone.history.navigate(route);
+		Radio.trigger('global', 'approuter:navigate', route)
 	},
 
 	toggleSidebar(e){

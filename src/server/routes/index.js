@@ -2,11 +2,16 @@ import {Router} from 'express';
 
 var router = new Router();
 
-
-router.get('/', (req, res)=>{
+var index = (req, res)=> {
 	res.render('index', {});
-});
-// router.get('/', (req, res)=> res.send('Home Route'));
+}
+
+
+// Test
 router.get('/echo', (req, res)=> res.send('Echo Route'));
+
+
+
+router.get('*', index);
 
 export default router;
