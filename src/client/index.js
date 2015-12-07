@@ -3,11 +3,15 @@ import $ from 'jquery';
 import Radio from 'radio';
 import App from './app';
 
-
-
 // Expose these
 window.$ = window.jQuery = $;
 window._ = _;
+
+// Marionette Debugger only in dev mode
+if (__DEV__){
+	Radio.DEBUG = true;
+	if (window.__agent) window.__agent.start(Backbone, Marionette);
+}
 
 
 
