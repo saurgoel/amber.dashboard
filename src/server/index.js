@@ -39,12 +39,14 @@ app.use(session({
 
 app.use('/public', express.static(__dirname + '/public'));
 
-// Apply Router
-app.use(router);
+
+// Send config
 app.get('/config', (req, res)=>{
 	let blacklist = ['port']
 	res.json(_.omit(config, ...blacklist));
-})
+});
+// Apply Router
+app.use(router);
 
 // If requested route is not present in router
 // Handle 404

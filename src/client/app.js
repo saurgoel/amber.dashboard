@@ -52,12 +52,11 @@ class App extends Application{
 
 	initRouter(){
 		this.Router = new AppRouter({controller: new AppController()})
-		Radio.reply('global', 'approuter', this.Router);
 	}
 
 	onStart(){
 		if (!Backbone.History.started){
-			Backbone.history.start({pushState: false, hashChange: true})
+			Backbone.history.start({pushState: true, hashChange: false})
 		}
 		console.log('App started')
 	}
