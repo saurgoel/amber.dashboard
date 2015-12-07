@@ -9,17 +9,14 @@ import AppRouter from './appRouter';
 import style from './app.styl';
 
 class App extends Application{
-	onBeforeStart(){
+	initialize(){
 		this.setupBehaviors();
 		this.ajaxConfig();
 		this.initRouter();
 
-		// Disable when using pushState
-		this.handleHref();
-
-		// Use our styles
 		style.use();
-	}	
+		this.listenTo(this, 'destroy', style.unuse);
+	}
 
 	ajaxConfig(){
 		let counter = 0;
@@ -36,19 +33,14 @@ class App extends Application{
 		})
 	}
 
-	handleHref(){
-		self = this
-		
-	}
-
 	setupBehaviors(){
 		window.Behaviors = {};
 		Marionette.Behaviors.behaviorsLookup = ()=> window.Behaviors;
-		Radio.reply('global', 'approuter', this.Router);
 	}
 
 	initRouter(){
 		this.Router = new AppRouter({controller: new AppController()})
+		Radio.reply('global', 'approuter', this.Router);
 	}
 
 	onStart(){
