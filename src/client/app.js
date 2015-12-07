@@ -1,4 +1,4 @@
-import {Application} from 'marionette';
+import {Application, RegionManager} from 'marionette';
 import Radio from 'radio';
 
 import Materialize from 'materialize-css';
@@ -8,14 +8,26 @@ import AppRouter from './appRouter';
 
 import style from './app.styl';
 
+
+const regions = {
+	Header : '#app-header',
+	Sidebar: '#app-sidebar',
+	Content: '#app-content'
+}
+
 class App extends Application{
 	initialize(){
-		this.setupBehaviors();
-		this.ajaxConfig();
-		this.initRouter();
+		this.rootView = new RegionManager({el: '#root', regions});
+		Radio.reply('global', 'root', this.rootView);
 
 		style.use();
 		this.listenTo(this, 'destroy', style.unuse);
+	}
+
+	onBeforeStart(){
+		this.setupBehaviors();
+		this.ajaxConfig();
+		this.initRouter();
 	}
 
 	ajaxConfig(){
