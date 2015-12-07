@@ -36,8 +36,14 @@ gulp.task('clean', cb => {
 });
 
 gulp.task('copy', cb => {
-	return gulp.src('./src/server/templates/**')
+	gulp
+		.src('./src/public/**')
+		.pipe(gulp.dest('./build/public'))
+	return (
+		gulp
+		.src('./src/server/templates/**')
 		.pipe(gulp.dest('./build/templates'))
+	);
 });
 
 gulp.task('build', ['clean', 'copy', 'webpack:build']);
@@ -50,7 +56,7 @@ gulp.task('webpack:build', ['clean', 'copy'], cb => {
 	
 	let onComplete = (err, stats)=>{
 		if (err) return console.error(err);
-		console.log(stats.toString({colors: true, chunks: false}))
+		console.log(stats.toString({colors: true, chunks: true}))
 		runCount += 1;
 		if (runCount === 2) return cb();
 	}
