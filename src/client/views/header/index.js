@@ -1,7 +1,6 @@
 import {ItemView} from 'marionette';
 import Radio from 'radio';
 
-import Model from './model';
 import tpl from './template.jade';
 import style from './style.styl';
 
@@ -12,8 +11,6 @@ import style from './style.styl';
 var HeaderView = ItemView.extend({
 	template: tpl,
 	className: 'view-header',
-	model: new Model(),
-
 	ui: {
 		menuIcon: '#sidebar-toggle',
 		ddItem:  '.service-selector .dropdown-content a',
