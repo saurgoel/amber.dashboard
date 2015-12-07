@@ -1,5 +1,5 @@
 mixin Icon(icon_name)
-	i(class='mdi-#{icon_name}')
+	i(class='mdi-#{icon_name}')&attributes(attributes)
 
 mixin IconWithText(icon_name, text, icon_align = 'left')
 	if icon_align == 'left'

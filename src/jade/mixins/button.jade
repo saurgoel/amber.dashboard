@@ -11,5 +11,5 @@ mixin Button(text, button_type)
 			block
 
 mixin IconButton(text, icon, button_type)
-	+Button(text, button_type)
+	+Button(text, button_type)(class=attributes.class)
 		+Icon(icon)
