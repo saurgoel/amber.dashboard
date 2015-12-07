@@ -1,47 +1,34 @@
-import {ItemView} from 'marionette';
+import {LayoutView} from 'marionette';
 import Radio from 'radio';
 
 import tpl from './template.jade';
 import style from './style.styl';
 
 
+var HeaderChannel = Radio.channel('Header');
 
-
-
-var HeaderView = ItemView.extend({
+var HeaderView = LayoutView.extend({
 	template: tpl,
 	className: 'view-header',
 	ui: {
 		menuIcon: '#sidebar-toggle',
-		ddItem:  '.service-selector .dropdown-content a',
-		ddTitle: '.service-selector .dropdown-button .title'
+		subheaderTitle: '.sub-header-title'
 	},
 	events: {
-		'click @ui.menuIcon': 'toggleSidebar',
-		'click @ui.ddItem'  : 'selectService'
+		'click @ui.menuIcon': 'toggleSidebar'
 	},
 
 	initialize(){
 		this.listenTo(this, 'render' , style.use);
 		this.listenTo(this, 'destroy', style.unuse);
+		this.listenTo(HeaderChannel, 'update:subheader:title', this.updateSubheaderTitle);
 	},
-
+	updateSubheaderTitle(title){
+		this.ui.subheaderTitle.text(title || 'Title');
+	},
 	toggleSidebar(e){
 		Radio.trigger('global', 'sidebar:toggle')
-	},
-	selectService(e){
-		var text = $(e.currentTarget).text();
-		this.ui.ddTitle.text(text);
-		this.model.set('selectedService', text);
-	},
-
-	onAttach(){
-		this.$('.dropdown-button').dropdown({
-			hover: true, 
-			belowOrigin: false,
-			constrainWidth: false
-		});
 	}
-});
+})
 
 export default HeaderView;
