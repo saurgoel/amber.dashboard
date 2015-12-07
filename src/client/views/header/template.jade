@@ -1,5 +1,4 @@
 include /mixins/icon.jade
-include /mixins/list.jade
 include /mixins/dropdown.jade
 
 
@@ -7,7 +6,7 @@ include /mixins/dropdown.jade
 	#sidebar-toggle
 		+Icon('navigation-menu')
 	#brand-logo
-		a(href='#/') amber&nbsp;&nbsp;: :
+		img.responsive-img(src='/public/white-logo.png')
 	.service-selector
 		+SimpleDropdown(selectedService, 'flat')
 			each panel in panelsList
@@ -23,5 +22,5 @@ include /mixins/dropdown.jade
 			a(href='#/dashboard') Dashboard
 
 .sub-header
-	span.sub-header-title Title
+	span.sub-header-title #{selectedService || 'Title'}
 	#region-sub-header
