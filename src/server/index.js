@@ -21,6 +21,7 @@ app.set('view engine', 'jade');
 app.enable('trust proxy');
 
 // Middlewares
+app.use(favicon(__dirname + '/public/favicon.png'));
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
