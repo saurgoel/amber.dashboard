@@ -1,5 +1,6 @@
 import gulp from 'gulp';
 import minimist from 'minimist';
+import merge from 'lodash/object/merge';
 import {exec} from 'child-process-promise';
 import nodemon from 'gulp-nodemon';
 import nodeInspector from 'gulp-node-inspector';
@@ -104,7 +105,7 @@ gulp.task('server', ['build'], cb => {
 	nodemon({
 		script: './build/server.js',
 		watch:  './build/server.js',
-		env: Object.assign({NODE_ENV: 'development'}, process.env),
+		env: merge({NODE_ENV: 'development'}, process.env),
     nodeArgs: ['--debug']
   }).on('restart', cb=>{
     console.log('Server Restarted: Reloading BrowserSync.');
