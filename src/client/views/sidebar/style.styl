@@ -1,27 +1,41 @@
 .view-sidebar
 	flex 1
 	flex-vertical()
+	font-size 24px
 	.sidebar-inner
 		background-color #fff
-		border-right 1px theme_border solid 
 		flex 1
 		flex-vertical()
 		
 	.sidebar-backdrop
-		fixed top left right bottom
-		display none
+		fixed top left bottom
+		opacity 0
 		background-color rgba(#000, 0.36)
 		cursor pointer
-		transition()
+		transition opacity time_2x ease
 		z-index -1
+		&.is-active
+			opacity 1
+			width 100vw
 
-	.sidebar-heading
-		font-weight bolder
-		font-size 14px
-		margin-right -1px
-		padding 12px gutter_x
+	.sidebar-header
 		color color_font
 		background-color color_base
+		height header_height + 3
+		
+		> span
+			display block
+			font-weight 100
+			margin-left gutter_x
+	
+	.back-button
+		padding gutter_x
+		hover-pop()
+		click-shrink()
+		transition()
+		
+	
+		
 	
 	.list-categories
 		list-style none

@@ -7,9 +7,9 @@ mixin CategoryItem(name, url)
 
 .sidebar-inner
 	//- This will be rendered
-	.sidebar-heading
-		+IconButton('', 'navigation-arrow-back', 'flat')(class='back-button')
-		Categories
+	.sidebar-header
+		+Icon('navigation-arrow-back back-button')
+		span.title Categories
 	ul.list-categories
 		each url, name in menus
 			+CategoryItem(name, url)
