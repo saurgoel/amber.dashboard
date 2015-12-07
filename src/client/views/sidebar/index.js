@@ -25,10 +25,12 @@ const SidebarView = ItemView.extend({
 	model: SidebarModel,
 
 	ui: {
+		backbutton: '.sidebar-header .back-button',
 		backdrop: '.sidebar-backdrop'
 	},
 	events: {
-		'click @ui.backdrop': 'toggleSidebar'
+		'click @ui.backdrop'  : 'toggleSidebar',
+		'click @ui.backbutton': 'toggleSidebar'
 	},
 	
 	initialize(){
@@ -40,6 +42,7 @@ const SidebarView = ItemView.extend({
 
 	toggleSidebar(e){
 		this.$el.parent().toggleClass('is-active');
+		this.ui.backdrop.toggleClass('is-active', this.$el.parent().hasClass('is-active'));
 	}
 
 })
