@@ -1,17 +1,18 @@
-include /mixins/button.jade
+include /mixins/icon.jade
 
 
-mixin CategoryItem(name, url)
+mixin CategoryItem(menu)
 	li.list-categories-item
-		a(href='#{url}') #{name}
+		a(href=menu.route)
+			+IconWithText(menu.icon, menu.name, 'left')
 
 .sidebar-inner
 	//- This will be rendered
 	.sidebar-header
 		+Icon('navigation-arrow-back back-button')
-		span.title Categories
+		span.title Services
 	ul.list-categories
-		each url, name in menus
-			+CategoryItem(name, url)
+		each menu in menus
+			+CategoryItem(menu)
 
 .sidebar-backdrop
