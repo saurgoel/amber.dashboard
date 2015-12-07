@@ -1,24 +1,15 @@
-import {Controller, RegionManager} from 'marionette';
+import {Controller} from 'marionette';
 
 import Header from './views/header/index';
 import Sidebar from './views/sidebar/index';
 
-// The elements are rendered through server in base page
-const regions = {
-	Header: '#app-header',
-	Sidebar: '#app-sidebar',
-	Content: '#app-content'
-}
-
-// Region Manager
-const Manager = new RegionManager({regions, el: '#root'});
-
 class AppController extends Controller {
 	initialize(){
+		this.RM = Radio.request('global', 'root');
 		
 		// Load Defaults
-		Manager.get('Header').show(new Header())
-		Manager.get('Sidebar').show(new Sidebar())
+		this.RM.get('Header').show(new Header())
+		this.RM.get('Sidebar').show(new Sidebar())
 	}
 
 	// These will be executed when 
@@ -26,14 +17,14 @@ class AppController extends Controller {
 	// Load these in 'Content' Region
 	home(){
 		require.ensure([], ()=>{
-			var view = require('./views/home/index').default;
-			Manager.get('Content').show(new view());
+			var view = require('./views/home/index');
+			this.RM.get('Content').show(new view());
 		});
 	}
 	dashboard(){
 		require.ensure([], ()=>{
-			var view = require('./views/dashboard/index').default;
-			Manager.get('Content').show(new view());
+			var view = require('./views/dashboard/index');
+			this.RM.get('Content').show(new view());
 		});
 	}
 
@@ -41,15 +32,15 @@ class AppController extends Controller {
 	// Customers Panel
 	customer(){
 		require.ensure([], ()=>{
-			var view = require(`./panels/customer/index`).default;
-			Manager.get('Content').show(new view());
+			var view = require(`./panels/customer/index`);
+			this.RM.get('Content').show(new view());
 		})
 	}
 
 	customerLeads(){
 		require.ensure([], ()=>{
-			var view = require(`./panels/customer/leads/index`).default;
-			Manager.get('Content').show(new view());
+			var view = require(`./panels/customer/leads/index`);
+			this.RM.get('Content').show(new view());
 		})
 	}
 

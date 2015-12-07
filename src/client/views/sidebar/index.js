@@ -4,7 +4,7 @@ import Model from './model';
 import tpl from './template.jade';
 import style from './style.styl';
 
-var Channel = Radio.channel('global');
+let Channel = Radio.channel('global');
 
 const SidebarView = ItemView.extend({
 	template: tpl,
@@ -13,11 +13,13 @@ const SidebarView = ItemView.extend({
 
 	ui: {
 		backbutton: '.sidebar-header .back-button',
-		backdrop: '.sidebar-backdrop'
+		backdrop: '.sidebar-backdrop',
+		menuItem: '.list-categories-item'
 	},
 	events: {
 		'click @ui.backdrop'  : 'toggleSidebar',
-		'click @ui.backbutton': 'toggleSidebar'
+		'click @ui.backbutton': 'toggleSidebar',
+		'click @ui.menuItem': 'selectMenu'
 	},
 	
 	initialize(){
@@ -25,6 +27,12 @@ const SidebarView = ItemView.extend({
 		this.listenTo(this, 'destroy', style.unuse);
 
 		this.listenTo(Channel, 'sidebar:toggle', this.toggleSidebar);
+	},
+
+	selectMenu(e){
+		let route = e.currentTarget.getAttribute('data-route');
+		this.model.selectMenu({route});
+		Backbone.history.navigate(route);
 	},
 
 	toggleSidebar(e){

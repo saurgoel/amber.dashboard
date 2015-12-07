@@ -14,6 +14,13 @@ const menus = [
 class SidebarModel extends Model {
 	initialize(){
 		this.set({menus, selected: 0});
+	}
+	selectMenu(options){
+		// Deactivate previous
+		let prev   = _.findWhere(this.get('menus'), {active: true})
+		let next = _.findWhere(this.get('menus'), options);
+		if (prev) prev.active = false;
+		next.active = true;
 	}	
 }
 

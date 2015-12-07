@@ -2,9 +2,11 @@ include /mixins/icon.jade
 
 
 mixin CategoryItem(menu)
-	li.list-categories-item
-		a(href=menu.route)
-			+IconWithText(menu.icon, menu.name, 'left')
+	li.list-categories-item(
+		class = menu.active ? 'is-active' : '', 
+		data-route = menu.route
+	)
+		+IconWithText(menu.icon, menu.name, 'left')
 
 .sidebar-inner
 	//- This will be rendered
