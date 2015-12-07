@@ -1,5 +1,5 @@
 // @import '~font-awesome/css/font-awesome.css'
-@import '~materialize-css/dist/css/materialize.css'
+@import '~materialize-css/bin/materialize.css'
 
 // Setup Defaults
 global-reset()
@@ -40,14 +40,12 @@ body
 		width sidebar_width
 		fixed top left (-1*sidebar_width) bottom
 		z-index z6
+		opacity 0.6
 		flex-vertical()
 		transition()
 		&.is-active
 			left 0
-		&.is-active ~ #app-content
-			margin-left sidebar_width
-		&.is-active .sidebar-backdrop
-			display block
+			opacity 1
 	
 
 // Default Link Styles
