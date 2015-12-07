@@ -1,7 +1,8 @@
 mixin Icon(icon_name)
 	i(class='mdi-#{icon_name}')&attributes(attributes)
 
-mixin IconWithText(icon_name, text, icon_align = 'left')
+mixin IconWithText(icon_name, text, icon_align)
+	- icon_align = icon_align || 'left';
 	if icon_align == 'left'
 		+Icon(icon_name)
 		span.icon-text #{text}

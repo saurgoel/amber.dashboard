@@ -6,10 +6,14 @@ mixin Button(text, button_type)
 	- var cnames = (button_type === 'flat' ? 'btn-flat': 'btn') + ' waves-effect waves-light'
 	
 	a(class=cnames)&attributes(attributes)
-		| #{text}
+		span.text #{text}
 		if block
 			block
 
 mixin IconButton(text, icon, button_type)
-	+Button(text, button_type)(class=attributes.class)
+	
+	+Button(text, button_type)(
+		class=attributes.class
+		href=attributes.href
+	)
 		+Icon(icon)
