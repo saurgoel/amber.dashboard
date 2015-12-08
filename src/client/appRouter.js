@@ -2,7 +2,7 @@ import Marionette from 'marionette';
 
 const appRoutes = {
 	
-	'(/)': 'home',
+	'': 'home',
 	'dashboard': 'dashboard',
 	
 	// Customer Panel
@@ -10,6 +10,12 @@ const appRoutes = {
 	'customer/leads': 'customerLeads',
 	'customer/users': 'customerUsers',
 	'customer/beta' : 'customerBeta',
+
+
+	'notification': 'notification',
+	'notification/emails': 'notificationEmails',
+	'notification/sms': 'notificationSMS',
+	'notification/push': 'notificationPush',
 
 }
 
@@ -23,7 +29,7 @@ class AppRouter extends Marionette.AppRouter {
 	}
 
 	gotoRoute(route){
-		this.navigate(route, {trigger: true})
+		this.navigate(route, {trigger: true});
 	}
 	
 	// Called on every route navigation

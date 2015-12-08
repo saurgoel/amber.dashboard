@@ -1,30 +1,35 @@
 import {Controller} from 'marionette';
 
-import Header from './views/header/index';
-import Sidebar from './views/sidebar/index';
+import HeaderView   from './views/header/index';
+import SidebarView  from './views/sidebar/index';
+
 
 class AppController extends Controller {
 	initialize(){
 		this.RM = Radio.request('global', 'root');
 		
 		// Load Defaults
-		this.RM.get('Header').show(new Header())
-		this.RM.get('Sidebar').show(new Sidebar())
+		this.RM.get('Header').show(new HeaderView())
+		this.RM.get('Sidebar').show(new SidebarView())
 	}
 
-	// These will be executed when 
-	// corresponding route in approuter is active.
-	// Load these in 'Content' Region
+	// Inject views in content region
+	toContent(view, options){
+		let ops = options || {};
+		let _view = new view(ops);
+		this.RM.get('Content').show(_view);
+	}
+
 	home(){
 		require.ensure([], ()=>{
 			var view = require('./views/home/index');
-			this.RM.get('Content').show(new view());
+			this.toContent(view);
 		});
 	}
 	dashboard(){
 		require.ensure([], ()=>{
 			var view = require('./views/dashboard/index');
-			this.RM.get('Content').show(new view());
+			this.toContent(view);
 		});
 	}
 
@@ -32,15 +37,15 @@ class AppController extends Controller {
 	// Customers Panel
 	customer(){
 		require.ensure([], ()=>{
-			var view = require(`./panels/customer/index`);
-			this.RM.get('Content').show(new view());
+			var view = require('./panels/customer/index');
+			this.toContent(view);
 		})
 	}
 
 	customerLeads(){
 		require.ensure([], ()=>{
-			var view = require(`./panels/customer/leads/index`);
-			this.RM.get('Content').show(new view());
+			var view = require('./panels/customer/leads/index');
+			this.toContent(view);
 		})
 	}
 
@@ -51,6 +56,16 @@ class AppController extends Controller {
 	customerBeta(){
 		
 	}
+
+	notification(){
+		require.ensure([], ()=>{
+			var view = require('./panels/notification/index');
+			this.toContent(view);
+		})
+	}
+	notificationEmails(){}
+	notificationSMS(){}
+	notificationPush(){}
 
 }
 
