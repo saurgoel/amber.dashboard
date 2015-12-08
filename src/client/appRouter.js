@@ -17,6 +17,8 @@ const appRoutes = {
 	'notification/sms': 'notificationSMS',
 	'notification/push': 'notificationPush',
 
+	'*notfound': 'notfound'
+
 }
 
 let Global = Radio.channel('global');

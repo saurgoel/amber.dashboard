@@ -2,7 +2,7 @@ import {Controller} from 'marionette';
 
 import HeaderView   from './views/header/index';
 import SidebarView  from './views/sidebar/index';
-
+import NotFoundView from './views/notfound/index';
 
 class AppController extends Controller {
 	initialize(){
@@ -18,6 +18,12 @@ class AppController extends Controller {
 		let ops = options || {};
 		let _view = new view(ops);
 		this.RM.get('Content').show(_view);
+	}
+
+	// When none of our route matches
+	notfound(){
+		console.error('404: Not Found');
+		this.toContent(NotFoundView);
 	}
 
 	home(){
