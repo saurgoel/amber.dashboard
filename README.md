@@ -17,3 +17,9 @@ Wait till tasks complete. Then visit [http://localhost:3000](http://localhost:30
 ```sh
 NODE_ENV=production gulp build
 ```
+
+
+# Authentication
+
+Add this to your /etc/hosts file
+127.0.0.1			local.getamber.com
