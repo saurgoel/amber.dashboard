@@ -10,6 +10,9 @@ var HeaderChannel = Radio.channel('header');
 var HeaderView = LayoutView.extend({
 	template: tpl,
 	className: 'view-header',
+	regions: {
+		SubHeader: '#region-sub-header'
+	},
 	ui: {
 		menuIcon: '#sidebar-toggle',
 		subheaderTitle: '.sub-header-title'
@@ -21,7 +24,12 @@ var HeaderView = LayoutView.extend({
 	initialize(){
 		this.listenTo(this, 'render' , style.use);
 		this.listenTo(this, 'destroy', style.unuse);
+		
+		this.listenTo(HeaderChannel, 'udpate:subheader', this.updateSubheader);
 		this.listenTo(HeaderChannel, 'update:subheader:title', this.updateSubheaderTitle);
+	},
+	updateSubheader(viewInstance){
+		this.getRegion('SubHeader').show(viewInstance);
 	},
 	updateSubheaderTitle(title){
 		this.ui.subheaderTitle.text(title ? title + '>' : 'Title');
