@@ -5,7 +5,7 @@ import tpl from './template.jade';
 import style from './style.styl';
 
 
-var HeaderChannel = Radio.channel('Header');
+var HeaderChannel = Radio.channel('header');
 
 var HeaderView = LayoutView.extend({
 	template: tpl,
@@ -24,7 +24,7 @@ var HeaderView = LayoutView.extend({
 		this.listenTo(HeaderChannel, 'update:subheader:title', this.updateSubheaderTitle);
 	},
 	updateSubheaderTitle(title){
-		this.ui.subheaderTitle.text(title || 'Title');
+		this.ui.subheaderTitle.text(title ? title + '>' : 'Title');
 	},
 	toggleSidebar(e){
 		Radio.trigger('global', 'sidebar:toggle')
