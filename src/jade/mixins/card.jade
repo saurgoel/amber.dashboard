@@ -1,12 +1,12 @@
 mixin Card(color, darken)
 	- var darken = _.isUndefined(darken) ? '' : "darken-"+darken;
-	- var color  = _.isUndefined(color ) ? '' : color;
+	- var color  = _.isUndefined(color ) ? 'teal' : color;
 	div(class = 'card #{color} #{darken}')
 		if block
 			block
 
 mixin CardContent(title, textcolor)
-	- var textcolor = _.isUndefined(textcolor) ? "" : textcolor;
+	- var textcolor = _.isUndefined(textcolor) ? "white-text" : textcolor;
 	- var title = _.isUndefined(title) ? '' : title;
 	div(class = 'card-content #{textcolor}')
 		if title
