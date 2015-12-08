@@ -8,7 +8,9 @@ import favicon from 'serve-favicon';
 import morgan from 'morgan';
 import session from 'express-session';
 import router from './routes';
-import config from '../../config';
+import config from './config';
+
+import TokenValidator from './helpers/token_validator';
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production' ? true : false;
 var app = express();
@@ -39,12 +41,9 @@ app.use(session({
 
 app.use('/public', express.static(__dirname + '/public'));
 
+// Only allow authenticated users
+app.use(TokenValidator);
 
-// Send config
-app.get('/config', (req, res)=>{
-	let blacklist = ['port']
-	res.json(_.omit(config, ...blacklist));
-});
 // Apply Router
 app.use(router);
 
