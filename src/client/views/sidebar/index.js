@@ -33,6 +33,7 @@ const SidebarView = ItemView.extend({
 		let route = e.currentTarget.getAttribute('data-route');
 		this.model.selectMenu({route});
 		Radio.trigger('global', 'approuter:navigate', route)
+		this.toggleSidebar();
 	},
 
 	toggleSidebar(e){
