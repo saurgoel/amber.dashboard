@@ -11,7 +11,7 @@ const TokenValidator = (req, res, next)=>{
 	request(validateURL, function(err, response, body) {
 		var valid = false;
 		if(!err && response.statusCode == 200) {
-			var user = JSON.parse(body);
+			var user = JSON.parse(body).data;
 			req.session.user = user;
 			valid = true;
 		}
