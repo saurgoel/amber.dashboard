@@ -25,14 +25,14 @@ var HeaderView = LayoutView.extend({
 		this.listenTo(this, 'render' , style.use);
 		this.listenTo(this, 'destroy', style.unuse);
 		
-		this.listenTo(HeaderChannel, 'udpate:subheader', this.updateSubheader);
+		this.listenTo(HeaderChannel, 'update:subheader', this.updateSubheader);
 		this.listenTo(HeaderChannel, 'update:subheader:title', this.updateSubheaderTitle);
 	},
 	updateSubheader(viewInstance){
 		this.getRegion('SubHeader').show(viewInstance);
 	},
 	updateSubheaderTitle(title){
-		this.ui.subheaderTitle.text(title ? title + '>' : 'Title');
+		this.ui.subheaderTitle.text(title ? title : 'Title');
 	},
 	toggleSidebar(e){
 		Radio.trigger('global', 'sidebar:toggle')
