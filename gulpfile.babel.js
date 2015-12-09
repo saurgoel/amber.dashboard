@@ -57,7 +57,7 @@ gulp.task('webpack:build', ['clean', 'copy'], cb => {
 	
 	let onComplete = (err, stats)=>{
 		if (err) return console.error(err);
-		console.log(stats.toString({colors: true, chunks: true}))
+		console.log(stats.toString({colors: true, chunks: false}))
 		runCount += 1;
 		if (runCount === 2) return cb();
 	}

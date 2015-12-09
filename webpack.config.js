@@ -134,4 +134,4 @@ var config_server = merge({}, config, {
 
 });
 
-module.exports = [config_client, config_server];
+export default [config_client, config_server];
