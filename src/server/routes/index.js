@@ -9,8 +9,14 @@ var index_handler = (req, res)=> {
 };
 
 var config_handler = (req, res)=> {
-	let blacklist = ['port']
-	res.json(omit(config, ...blacklist));
+	let blacklist = ['port'];
+	
+	let safe = {
+		...omit(config, blacklist),
+		user: req.session.user
+	};
+
+	res.json(safe);
 };
 
 
