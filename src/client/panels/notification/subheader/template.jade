@@ -1,1 +1,8 @@
-h4 Notification Subheader
+mixin Tab(text, href, is_active)
+	li.tab.col.s4(class="#{locals.tab} " + is_active ? "active" : "")
+		a(href=href) #{text}
+
+ul.tabs(class=locals.tabs)
+	+Tab('Emails', '#foo')
+	+Tab('SMS', '#bar')
+	+Tab('Push', '#baz')
