@@ -63,10 +63,10 @@ class AppController extends Controller {
 		
 	}
 
-	notification(){
+	notification(subpanel){
 		require.ensure([], ()=>{
 			var view = require('./panels/notification/index');
-			this.toContent(view);
+			this.toContent(view, {subpanel});
 		})
 	}
 	notificationEmails(){}

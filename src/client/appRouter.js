@@ -11,11 +11,9 @@ const appRoutes = {
 	'customer/users': 'customerUsers',
 	'customer/beta' : 'customerBeta',
 
-
-	'notification': 'notification',
-	'notification/emails': 'notificationEmails',
-	'notification/sms': 'notificationSMS',
-	'notification/push': 'notificationPush',
+	// Matches
+	// /notification, /notification/foo
+	'notification(/:subpanel)': 'notification',
 
 	'*notfound': 'notfound'
 
