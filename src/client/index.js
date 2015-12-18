@@ -17,7 +17,7 @@ Promise.resolve($.getJSON('/config'))
 		app.start(config);
 	})
 	.catch( err => {
-		console.error('APPERROR: ', err);
+		console.error('APPERROR: ', err, err.stack);
 	});
 
 
