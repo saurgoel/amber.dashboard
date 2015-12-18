@@ -3,6 +3,6 @@ mixin Tab(text, href, is_active)
 		a(href=href) #{text}
 
 ul.tabs(class=locals.tabs)
-	+Tab('Emails', '#foo')
-	+Tab('SMS', '#bar')
-	+Tab('Push', '#baz')
+	+Tab('Emails', '/notification/emails')
+	+Tab('SMS', '/notification/sms')
+	+Tab('Push', '/notification/push')

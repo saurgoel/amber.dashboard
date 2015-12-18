@@ -1,8 +1,27 @@
-import {ItemView} from 'marionette';
+import {CompositeView} from 'marionette';
+import {UseCSS} from 'behaviors';
 
-const NotificationEmails = ItemView.extend({
+import tpl from './template.jade';
+import style from './style.styl';
+
+import Collection from './collection';
+import ChildView from './item';
+
+var NotificationEmailsView = CompositeView.extend({
+	className: 'view-notification-emails',
 	template: tpl,
-	className: 'view-notification-emails'
-});
 
-export default NotificationEmails;
+	behaviors: { UseCSS: {style} },
+
+	childView: ChildView,
+	childViewContainer: '.list-wrapper ul.emails-list',
+	collection: new Collection(),
+
+	initialize(){
+		this.collection.fetch();
+		console.log('This is ready.')
+	},
+
+})
+
+export default NotificationEmailsView;

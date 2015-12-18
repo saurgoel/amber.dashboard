@@ -6,9 +6,15 @@ let {notifications_api_url} = Radio.request('global', 'config');
 var EmailsCollection = Collection.extend({
 	model: Model,
 	
-	url: notifications_api_url + '/email/templates.json'
+	url: notifications_api_url + '/email/templates.json',
 
-	parse: (response)=> response.data
+	parse(response){
+		this.meta = response.data.meta;
+		return response.data.result;
+	},
+	getMeta(){
+		return this.meta || {};
+	}
 });
 
 export default EmailsCollection;

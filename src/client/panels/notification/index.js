@@ -14,6 +14,7 @@ var NotificationPanelLayout = LayoutView.extend({
 		Sidebar: '#region-notification-sidebar',
 		Content: '#region-notification-content'
 	},
+	
 	sidebar_links: [
 		{ name: 'Emails',  href: '/notification/emails' },
 		{ name: 'SMS', href: '/notification/sms' },
@@ -35,8 +36,8 @@ var NotificationPanelLayout = LayoutView.extend({
 		this.initSubHeader();
 		
 		// Sidebar
-		let collection = new Collection(this.sidebar_links);
-		this.getRegion('Sidebar').show( new SideNav({collection}) );
+		// let collection = new Collection(this.sidebar_links);
+		// this.getRegion('Sidebar').show( new SideNav({collection}) );
 
 		// Subpanel
 		if (!this.subpanel) return
