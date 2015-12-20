@@ -63,13 +63,27 @@ class AppController extends Controller {
 		
 	}
 
+	// Notifications Panel
 	notification(subpanel){
 		require.ensure([], ()=>{
 			var view = require('./panels/notification/index');
 			this.toContent(view, {subpanel});
 		})
 	}
-	notificationEmails(){}
+	// /notification/email
+	notificationEmails(){
+		require.ensure([], ()=>{})
+	}
+	// /notification/email/12
+	notificationEmail(){
+
+	}
+	// /notification/email/12/edit
+	notificationEmailEdit(){
+
+	}
+
+
 	notificationSMS(){}
 	notificationPush(){}
 

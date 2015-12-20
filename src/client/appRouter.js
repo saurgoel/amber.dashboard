@@ -13,7 +13,10 @@ const appRoutes = {
 
 	// Matches
 	// /notification, /notification/foo
-	'notification(/:subpanel)': 'notification',
+	'notification(/:subpanel)'				: 'notification',
+	'notification/email'							: 'notificationEmails',
+	'notification/email/:id'					: 'notificationEmail',
+	'notification/email/:id/edit'			: 'notificationEmailEdit',
 
 	'*notfound': 'notfound'
 
@@ -24,6 +27,7 @@ let Global = Radio.channel('global');
 class AppRouter extends Marionette.AppRouter {
 	initialize(){
 		this.appRoutes = appRoutes;
+		
 		this.listenTo(Global, 'approuter:navigate', this.gotoRoute);
 		Global.reply('approuter', this);
 	}

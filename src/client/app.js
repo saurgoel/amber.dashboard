@@ -1,13 +1,11 @@
 import {Application, RegionManager} from 'marionette';
-import Radio from 'radio';
-
 import Materialize from 'materialize-css';
+import {Global} from 'channels';
 
 import AppController from './appController';
 import AppRouter from './appRouter';
 
 import style from './app.styl';
-
 
 const regions = {
 	Header : '#app-header',
@@ -15,10 +13,10 @@ const regions = {
 	Content: '#app-content'
 }
 
-class App extends Application{
+class App extends Application {
 	initialize(){
 		this.rootView = new RegionManager({el: '#root', regions});
-		Radio.reply('global', 'root', this.rootView);
+		Global.reply('root', this.rootView);
 
 		style.use();
 		this.listenTo(this, 'destroy', style.unuse);
@@ -29,6 +27,13 @@ class App extends Application{
 		this.ajaxConfig();
 		this.handleHref();
 		this.initRouter();
+	}
+	
+	onStart(){
+		if (!Backbone.History.started){
+			Backbone.history.start({pushState: true, hashChange: false})
+		}
+		console.log('App started')
 	}
 
 	ajaxConfig(){
@@ -53,16 +58,21 @@ class App extends Application{
 	}
 
 	initRouter(){
-		this.Router = new AppRouter({controller: new AppController()})
+		this.Router = new AppRouter({
+			controller: new AppController()
+		});
 	}
 
 	handleHref(){
+		// Urls that can be rendered by server without loading app
+		const blacklist = ['sign_out']
+
 		$(document).on('click', 'a[href^="/"]', (e)=>{
-			let $target = $(e.currentTarget)
-			let href = $target.attr('href')
+			let $a = $(e.currentTarget)
+			let href = $a.attr('href')
 			
 			// <a href='/some/route' data-pass=true>
-			if ($target.data('pass')) return;
+			if ($a.data('pass')) return;
 
 			// chain 'or's for other black list routes
 			let passThrough = href.indexOf('sign_out') >= 0
@@ -74,18 +84,14 @@ class App extends Application{
 
 			// Remove leading slashes and hash bangs (backward compatablility)
 			let url = href.replace(/^\//  , '').replace('\#\!\/', '');
-			// Instruct Backbone to trigger routing events
+
+			// Navigate through router
 			this.Router.navigate(url, {trigger: true})
 			return false
 		});
 	}
 
-	onStart(){
-		if (!Backbone.History.started){
-			Backbone.history.start({pushState: true, hashChange: false})
-		}
-		console.log('App started')
-	}
+	
 }
 
 export default App;

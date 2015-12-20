@@ -8,17 +8,19 @@ window.$ = window.jQuery = $;
 window._ = _;
 
 
+const start = (config)=>{
+	Radio.reply('global', 'config', config);
+	app.start(config);
+}
+
 
 // App
-let app = window.Amber = new App();
-Promise.resolve($.getJSON('/config'))
-	.then( config => {
-		Radio.reply('global', 'config', config);
-		app.start(config);
-	})
-	.catch( err => {
-		console.error('APPERROR: ', err, err.stack);
-	});
+window.app = new App();
+
+Promise
+	.resolve($.getJSON('/config'))
+	.then(start)
+	.catch(err => console.error('APPERROR: ', err, err.stack) );
 
 
 
