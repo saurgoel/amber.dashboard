@@ -17,9 +17,9 @@ var NotificationEmailsView = CompositeView.extend({
 	childViewContainer: '.list-wrapper ul.emails-list',
 	collection: new Collection(),
 
-	initialize(){
+	initialize(options){
 		this.collection.fetch();
-		console.log('This is ready.')
+		console.log('notification/emails/.', options)
 	},
 
 })
