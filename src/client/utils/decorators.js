@@ -12,7 +12,7 @@ export function WithCSS(style){
 		var bhs = _.result(view.prototype, 'behaviors') || null;
 		_.isUndefined(bhs)
 			? bhs = {UseCSS: {style}}
-			: view.prototype.behaviors = extend({}, bhs, {UseCSS: {style}};
+			: view.prototype.behaviors = extend({}, bhs, {UseCSS: {style}});
 
 		return view
 	}
