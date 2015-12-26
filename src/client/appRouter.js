@@ -12,15 +12,22 @@ const appRoutes = {
   'customer/users': 'customerUsers',
   'customer/beta' : 'customerBeta',
 
-  // Matches
-  // /notification, /notification/foo
   'notification'                : 'notification',
+
+  // Emails
   'notification/email'          : 'notificationEmailList',
   'notification/email/:id'      : 'notificationEmailShow',
   'notification/email/:id/edit' : 'notificationEmailEdit',
 
-  'notification/sms' : 'notificationSMSList',
-  'notification/push': 'notificationPushList',
+  // SMS
+  'notification/sms'          : 'notificationSMSList',
+  'notification/sms/:id'      : 'notificationSMSShow',
+  'notification/sms/:id/edit' : 'notificationSMSEdit',
+
+  // Push Notifications
+  'notification/push'          : 'notificationPushList',
+  'notification/push/:id'      : 'notificationPushShow',
+  'notification/push/:id/edit' : 'notificationPushEdit',
 
   'notification/*notfound': 'notfound',
 
