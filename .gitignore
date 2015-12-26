@@ -3,3 +3,6 @@ node_modules/
 
 # generated files
 build/
+
+# junk
+amberdashboard.sublime-workspace
