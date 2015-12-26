@@ -3,15 +3,17 @@ include ./icon.jade
 
 mixin Button(text, button_type)
 	//- Classnames to apply
-	- var cnames = (button_type === 'flat' ? 'btn-flat': 'btn') + ' waves-effect waves-light'
-	
+	- var cnames = 'waves-effect waves-light ';
+	- cnames += (button_type === 'flat' ? 'btn-flat': 'btn')
+
 	a(class=cnames)&attributes(attributes)
-		span.text #{text}
+		if text
+			span.text #{text}
 		if block
 			block
 
 mixin IconButton(text, icon, button_type)
-	
+
 	+Button(text, button_type)(
 		class=attributes.class
 		href=attributes.href

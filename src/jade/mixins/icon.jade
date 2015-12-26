@@ -1,5 +1,6 @@
 mixin Icon(icon_name)
-	i(class='mdi-#{icon_name}')&attributes(attributes)
+	//- i(class='mdi-#{icon_name}')&attributes(attributes)
+	i(class='fa fa-#{icon_name}')&attributes(attributes)
 
 mixin IconWithText(icon_name, text, icon_align)
 	- icon_align = icon_align || 'left';

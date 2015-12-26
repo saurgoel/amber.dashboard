@@ -1,4 +1,10 @@
 mixin List(items)
-	ul
+	ul&attributes(attributes)
 		each item in items
 			li #{item}
+
+mixin LinkList(items)
+	ul&attributes(attributes)
+		each item in items
+			li
+				a(href=item.url)= item.text
