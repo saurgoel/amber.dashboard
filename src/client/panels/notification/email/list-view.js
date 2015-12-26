@@ -1,11 +1,11 @@
 import {CompositeView} from 'marionette';
 import {UseCSS} from 'behaviors';
 
-import tpl from './template.jade';
+import tpl from './template-list.jade';
 import style from './style.styl';
 
 import Collection from './collection';
-import ChildView from './item';
+import ChildView from './list-view-item';
 
 var NotificationEmailsView = CompositeView.extend({
 	className: 'view-notification-emails',
