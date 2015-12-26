@@ -3,10 +3,10 @@
 	flex-vertical()
 	font-size 24px
 	.sidebar-inner
-		background-color #fff
+		background-color sidebar_bg
 		flex 1
 		flex-vertical()
-		
+
 	.sidebar-backdrop
 		fixed top left bottom
 		opacity 0
@@ -21,39 +21,43 @@
 	.sidebar-header
 		color color_font
 		background-color color_base
-		height header_height + 3
-		
+		height 128px
+
 		> span
 			display block
 			font-weight 100
+			margin-top gutter_y
 			margin-left gutter_x
-	
+
 	.back-button
 		padding gutter_x
 		button-clickable()
-		
-	
-		
-	
+
+
+
+
 	.list-categories
 		list-style none
-		
+
 	.list-categories-item
 		font-weight lighter
-		color lighten(theme_font, 10%)
+		color sidebar_text
 		height auto
-	
+
 		padding 8px gutter_x 8px (gutter_x - 6)
 		box-sizing border-box
 		font-size 18px
 		width 100%
-	
+
 		border-left 6px transparent solid
-		
+		> i
+			width 36px
+			margin-right 8px
+			margin-left -4px
+
 		&:hover
 			background-color rgba(#000, 0.1)
 			border-left-color rgba(#000, 0.5)
 		&.is-active, &:active
 			background-color rgba(#000, 0.1)
 			border-left-color color_base
-			
