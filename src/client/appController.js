@@ -1,23 +1,26 @@
 import {Controller} from 'marionette';
 
+import NotificationController from 'controllers/notification';
+
 import HeaderView   from './views/header/index';
 import SidebarView  from './views/sidebar/index';
 import NotFoundView from './views/notfound/index';
 
 class AppController extends Controller {
-	initialize(){
-		this.RM = Radio.request('global', 'root');
-		
+	initialize(root){
+		this.root = root;
+		this.Content = root.get('Content');
+
 		// Load Defaults
-		this.RM.get('Header').show(new HeaderView())
-		this.RM.get('Sidebar').show(new SidebarView())
+		this.root.get('Header').show(new HeaderView())
+		this.root.get('Sidebar').show(new SidebarView())
 	}
 
 	// Inject views in content region
 	toContent(view, options){
 		let ops = options || {};
 		let _view = new view(ops);
-		this.RM.get('Content').show(_view);
+		this.Content.show(_view);
 	}
 
 	// When none of our route matches
@@ -58,34 +61,49 @@ class AppController extends Controller {
 	customerUsers(){
 
 	}
-	
+
 	customerBeta(){
-		
+
 	}
 
 	// Notifications Panel
-	notification(subpanel){
-		require.ensure([], ()=>{
-			var view = require('./panels/notification/index');
-			this.toContent(view, {subpanel});
-		})
-	}
-	// /notification/email
-	notificationEmails(){
-		require.ensure([], ()=>{})
-	}
-	// /notification/email/12
-	notificationEmail(){
-
-	}
-	// /notification/email/12/edit
-	notificationEmailEdit(){
-
+	notification(){
+		NotificationController.index(this.Content, {});
 	}
 
+	// Emails
+	notificationEmailList(){
+		NotificationController.listAllEmail(this.Content);
+	}
+	notificationEmailShow(id){
+		NotificationController.showOneEmail(this.Content, id);
+	}
+	notificationEmailEdit(id){
+		NotificationController.editOneEmail(this.Content, id);
+	}
 
-	notificationSMS(){}
-	notificationPush(){}
+	// SMS
+	notificationSMSList(){
+		NotificationController.listAllSMS(this.Content);
+	}
+	notificationSMSShow(id){
+		NotificationController.showOneSMS(this.Content, id);
+	}
+	notificationSMSEdit(id){
+		NotificationController.editOneSMS(this.Content, id);
+	}
+
+	// Push
+	notificationPushList(){
+		NotificationController.listAllPush(this.Content);
+	}
+	notificationPushShow(id){
+		NotificationController.showOnePush(this.Content, id);
+	}
+	notificationPushEdit(id){
+		NotificationController.editOnePush(this.Content, id);
+	}
+
 
 }
 
