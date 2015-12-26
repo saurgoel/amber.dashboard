@@ -1,72 +1,31 @@
 .view-header
+	height 100%
 	color color_font
 	background-color color_base
 	border-bottom 1px theme_border solid
-	flex-container column
-	flex 1
+	flex-container row center
 	shadow()
 	transition()
-	.main-header, .sub-header
-		flex-container row center
-		padding 0 gutter_x
-		transition()
-	.main-header
-		flex-basis main_header_height
-	.sub-header
-		flex-basis sub_header_height
-		
-	
-		
-// Fills remaining flex area
-.view-header .header-spacer
+
+// Flex-Spacing
+.view-header .flex-space
 	flex 1
-.view-header .main-header
-	padding 0 gutter_x
-	border-bottom 1px theme_border solid
-	shadow()
-	
-	#brand-logo
-		margin 6px 12px 0 0
-		width 32px
-			
-	#sidebar-toggle
-		margin-left (-1*gutter_x)
-		font-size 24px
-		color color_font
-		padding 16px 20px
-		button-clickable()
-	
-	
-	ul.navigation
-		width auto
-		inline-list 32px
-		
-// Sub Header
-.view-header .sub-header
-	.sub-header-title
-		font-weight lighter
-		font-size 24px
-		padding-right gutter_x
-	#region-sub-header
-		padding 0 gutter_x
-		flex 1
 
 
-// Other Mods
-.view-header
-	.btn-flat
-		color inherit
-	.dropdown-button
-		padding 12px 0
-		display inline
-		text-transform lowercase
-		font-size 28px
-		.title
-			margin-right 6px
-			font-weight 100
-	.dropdown-content
-		color theme_font
-		li
-			color inherit
-		a
-			padding-right 48px
+.view-header .sidebar-toggle
+	height header_height
+
+// Buttons
+.view-header .btn-flat
+	padding 18px gutter_x
+	margin-right 12px
+	height 100%
+	color inherit
+
+// Logo
+.view-header .brand-logo
+	width 48px
+	font-size 24px
+	font-weight 100
+	> img
+		width 100%

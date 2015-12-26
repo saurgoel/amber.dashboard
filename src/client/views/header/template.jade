@@ -1,21 +1,15 @@
 include /mixins/icon.jade
-include /mixins/dropdown.jade
+include /mixins/button.jade
 
 
-.main-header
-	#sidebar-toggle
-		+Icon('navigation-menu')
-	#brand-logo
-		img.responsive-img(src='/public/white-logo.png')
-			
-	.header-spacer
+mixin NormalHeader()
+	.sidebar-toggle
+		+IconButton('', 'bars', 'flat')
+	.brand-logo Amber
+	.flex-space
+	.user-area
+		+IconButton('', 'user', 'flat')
 
-	ul.navigation
-		li
-			a(href='/') Home
-		li
-			a(href='/dashboard') Dashboard
 
-.sub-header
-	span.sub-header-title Title
-	#region-sub-header
+//- Render this
++NormalHeader
