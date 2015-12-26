@@ -2,27 +2,18 @@ import {ItemView} from 'marionette';
 import tpl from './template.jade';
 
 import style from './style.styl';
+import { UseCSS } from 'behaviors/index';
 
-var NotificationSubHeader = ItemView.extend({
+var NotificationHeader = ItemView.extend({
 	template: tpl,
-	className: 'view-notification-subheader',
+	className: 'view-notification-header',
+	behaviors: { UseCSS: {style} },
 
-	templateHelpers(){
-		return ()=> { 
-			let locals = ()=> style.locals ? style.locals : style.use().locals;
-			return {locals}
-		}
-	},
+  onRender(){
+    var frag = Backbone.history.getFragment()
 
-	initialize(){
-		this.listenTo(this, 'render', style.use);
-		this.listenTo(this, 'destroy', style.unuse);
-	},
-	
-	onAttach(){
-		this.$('.tabs').tabs();
-	}
+  }
 
 });
 
-export default NotificationSubHeader;
+export default NotificationHeader;

@@ -1,9 +1,18 @@
+.view-notification-header
+  background-color color_base
 
+:local .tabsContainer
+  width 260px
 
-:local .tabs
-	background-color transparent
-:local .tabs .tab a
-	color color_font
-	&:hover
-		color color_font
-		background-color rgba(#fff, 0.12)
+  > ul
+    flex-container row
+
+  > ul li
+    color color_font
+    flex 1
+    width 100%
+    a
+      text-align center
+      padding 8px gutter_x 12px gutter_x
+      border-top 4px transparent solid
+      transition()
