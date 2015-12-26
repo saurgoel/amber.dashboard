@@ -1,5 +1,5 @@
-import {WithCSS} from './decorators';
+import {WithCSS, ProtoProp} from './decorators';
 
 export default {
-	WithCSS
+	WithCSS, ProtoProp
 }
