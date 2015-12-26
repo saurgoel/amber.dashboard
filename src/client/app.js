@@ -59,7 +59,7 @@ class App extends Application {
 
 	initRouter(){
 		this.Router = new AppRouter({
-			controller: new AppController()
+			controller: new AppController(this.rootView)
 		});
 	}
 
@@ -74,8 +74,8 @@ class App extends Application {
 			// <a href='/some/route' data-pass=true>
 			if ($a.data('pass')) return;
 
-			// chain 'or's for other black list routes
-			let passThrough = href.indexOf('sign_out') >= 0
+			// allow if not present in blacklist
+			let passThrough = !blacklist.includes(href);
 
 			// Allow shift+click for new tabs, etc.
 			if( !passThrough && !e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey){

@@ -14,6 +14,8 @@ module.exports = function(env){
 			extensions: ['', '.webpack.js', '.web.js', '.js', '.json'],
 		},
 
+		stats: {colors: true, chunks: false},
+
 		module: {
 			loaders: [
 				{ test: /\.json$/, loader: 'json-loader' }, 

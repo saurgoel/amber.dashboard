@@ -1,9 +1,10 @@
 // Setup Defaults
 global-reset()
+border-box-html()
 
-
-// @import '~font-awesome/css/font-awesome.css'
-// @import '~materialize-css/bin/materialize.css'
+@import '~font-awesome/css/font-awesome.css'
+@import '~materialize-css/bin/materialize.css'
+// @import '~material-design-lite/material.css'
 
 
 body
@@ -14,21 +15,24 @@ body
 		
 	color theme_font
 
-	absolute top left right bottom
+
 	overflow hidden
+	absolute top left right bottom
+	z-index z0
 	
 	#root
 		absolute top left right bottom
-		flex-vertical()
-		
+		z-index z1
+	
 	#app-header
 		fixed top left right
 		z-index z4
-		flex-basis header_height
-		flex-horizontal()
+		height header_height
+		&.in-small-mode
+			height header_height_small
+			overflow hidden
 		
 	#app-content
-		flex 1
 		flex-container column
 		padding-top header_height
 		overflow-y auto
