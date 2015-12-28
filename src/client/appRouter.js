@@ -31,6 +31,9 @@ const appRoutes = {
 
   'notification/*notfound': 'notfound',
 
+
+  'product': 'product',
+
   '*notfound': 'notfound'
 
 }

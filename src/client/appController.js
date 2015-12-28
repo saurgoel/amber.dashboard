@@ -66,6 +66,13 @@ class AppController extends Controller {
 
 	}
 
+	product(){
+		require.ensure([], ()=>{
+			var view = require('./panels/product/index');
+			this.toContent(view);
+		})
+	}
+
 	// Notifications Panel
 	notification(){
 		NotificationController.index(this.Content, {});
