@@ -3,9 +3,12 @@ import config from '../config';
 
 const TokenValidator = (req, res, next)=>{
 	var token = req.cookies.auth_token || null;
+	var host  = __DEV__
+		? req.get('host').replace(config.serverPort, config.bsPort)
+		: req.get('host');
 
 	var validateURL = `${config.accounts_api_url}/auth/accounts/validate?auth_token=${token}`;
-	var redirectURL = `${config.accounts_api_url}/?redirect_to=${req.protocol}://${req.get('host')+req.originalUrl}`;
+	var redirectURL = `${config.accounts_api_url}/?redirect_to=${req.protocol}://${host+req.originalUrl}`;
 
 	request(validateURL, function(err, response, body) {
 		var valid = false;
