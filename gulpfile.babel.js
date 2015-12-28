@@ -21,6 +21,8 @@ const $ = gulpLoadPlugins();
 const argv = minimist(process.argv.slice(2));
 const isProduction = !!argv.prod;
 
+const amberConfig = require('./config');
+
 const config  = require('./webpack.config.js');
 const serverBundler = webpack(config[1]);
 const clientBundler = webpack(config[0]);
@@ -126,8 +128,9 @@ gulp.task('sync', ['serve'], cb => {
   browserSync({
     logPrefix: 'Housing: ',
     open: false, notify: true, https: false,
+    port: amberConfig.bsPort || 3000,
     proxy: {
-      target: 'localhost:4200',
+      target: `localhost:${amberConfig.serverPort}`,
       middleware: [
         webpackDevMiddleware(clientBundler, {
           publicPath: config[0].output.publicPath,
@@ -142,6 +145,7 @@ gulp.task('sync', ['serve'], cb => {
     ]
   }, cb);
 });
+
 
 
 gulp.task('default', ['sync']);

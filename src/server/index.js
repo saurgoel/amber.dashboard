@@ -64,7 +64,7 @@ app.use((err, req, res, next)=>{
 
 // Start Server
 const runServer = ()=>{
-	var port = process.env.PORT || 4200;
+	var port = process.env.PORT || config.serverPort;
 	app.listen(port, ()=>{
 		console.log(`Express Server at: Server started at http://localhost:${port}`)
 	})
