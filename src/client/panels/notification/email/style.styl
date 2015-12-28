@@ -1,6 +1,15 @@
-.view-notification-emails
-	background color_amber
-	
-:local .list_wrapper
-	flex 1
-	flex-container column
+:local(.self)
+  flex 1
+  flex-container row
+
+  .region-list
+    flex-basis 400px
+    background-color theme_widget
+    border-right 1px theme_border solid
+    // box-shadow 4px 0 12px 0 rgba(#000, 0.12)
+    position relative
+    z-index z4
+    // background-color color_indigo
+  .region-email
+    flex 1
+    background-color theme_bg

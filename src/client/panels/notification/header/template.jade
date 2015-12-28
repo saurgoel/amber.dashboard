@@ -1,0 +1,10 @@
+//- Locals styles are exported under 's' namespace
+
+mixin Tab(tab)
+  li
+    a(href=tab.url) #{tab.name}
+
+section(class=s.tabsContainer)
+  ul.subpanel-tabs
+    each tab in tabs
+      +Tab(tab)

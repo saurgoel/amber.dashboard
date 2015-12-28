@@ -1,0 +1,26 @@
+.view-notification-header
+  // background-color subheader_bg_color
+  background-color header_bg_color
+  color subheader_font_color
+  border-bottom 1px theme_border solid
+
+:local(.tabsContainer)
+  width 260px
+
+  > ul
+    flex-container row
+
+  > ul li
+    color inherit
+    border-bottom 3px transparent solid
+    flex 1
+    width 100%
+    opacity 0.72
+    transition()
+    a
+      text-align center
+      padding 12px gutter_x
+    &:hover, &:active, &.is-active
+      opacity 1
+    &.is-active
+      border-bottom-color color_base

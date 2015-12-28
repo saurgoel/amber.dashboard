@@ -1,13 +1,15 @@
 import {ItemView} from 'marionette';
+import {WithCSS} from 'utils';
 
 import tpl from './template-email.jade';
 
-class EmailItem extends ItemView {
-  constructor(options){
-    super(options);
-    this.template  = tpl;
-  }
 
+
+class EmailItem extends ItemView {
+  template = tpl
+  initialize(){
+
+  }
 }
 
 

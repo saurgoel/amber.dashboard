@@ -1,0 +1,64 @@
+icon_color = rgba(#000, 0.3)
+icon_color_hover = rgba(#000, 0.6)
+
+shadow_color = rgba(#000, 0.24)
+
+:local(.controls)
+  background-color theme_widget
+  position relative
+  z-index z3
+  border-bottom 1px theme_border solid
+  height 64px
+  // box-shadow 0px 5px 10px -5px shadow_color
+
+:local(.search)
+  flex-container row
+  position relative
+  margin-top 0
+  height 100%
+  color lighten(theme_font, 20%)
+  .search-icon
+    absolute top right
+    padding 14px gutter_x 0 gutter_x
+    height 64px
+    border-radius 0
+    color inherit
+    opacity 0.6
+
+  input
+    flex 1
+    font-weight 100
+    font-size 20px
+    border 1px transparent solid
+    border-radius 0
+    padding 0 gutter_x
+    height 100%
+    &:focus + .search-icon
+      color color_base
+
+  &:hover
+    input
+      border-color theme_border
+  &:focus
+    .search-icon
+      color icon_color_hover
+
+
+
+
+
+:local(.listwrapper)
+
+  background-color theme_widget
+  background-color rgba(#000, 0.12)
+
+  .emails-list
+    overflow auto
+
+  .view-email-item
+    background-color theme_widget
+    border-bottom 1px theme_border solid
+    padding 8px gutter_x
+
+    font-weight normal
+    color theme_font
