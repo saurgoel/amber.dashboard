@@ -8,7 +8,7 @@ import Collection from './collection';
 import ChildView from './list-view-item';
 import EmptyView from './empty-view';
 
-
+var EmailChannel = Radio.channel('email');
 
 var NotificationEmailsView = CompositeView.extend({
 	className: 'view-notification-emails',
@@ -23,8 +23,18 @@ var NotificationEmailsView = CompositeView.extend({
 
 	initialize(options){
 		this.collection.fetch();
-		console.log('notification/emails/.', options)
+		this.listenTo(EmailChannel, 'item:selected', this.updateList);
 	},
+
+	updateList(selected){
+		this.children
+			.filter(  k => k.$el.hasClass('is-active') > -1 )
+			.forEach( k => k.$el.removeClass('is-active'))
+
+		this.children
+			.findByModel(selected)
+			.$el.addClass('is-active')
+	}
 
 })
 
