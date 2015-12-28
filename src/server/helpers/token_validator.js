@@ -7,7 +7,7 @@ const TokenValidator = (req, res, next)=>{
 		? req.get('host').replace(config.serverPort, config.bsPort)
 		: req.get('host');
 
-	var validateURL = `${config.accounts_api_internal_url}/auth/accounts/validate?auth_token=${token}`;
+	var validateURL = `${__DEV__ ? config.accounts_api_url : config.accounts_api_internal_url}/auth/accounts/validate?auth_token=${token}`;
 	var redirectURL = `${config.accounts_api_url}/?redirect_to=${req.protocol}://${host+req.originalUrl}`;
 
 	request(validateURL, function(err, response, body) {
