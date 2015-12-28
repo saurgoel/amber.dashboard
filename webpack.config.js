@@ -32,8 +32,7 @@ var config_client = merge({}, config, {
 		],
 		vendors: [
 			'jquery', 'underscore',
-			'backbone', 'marionette', 'radio',
-			'hammerjs', 'materialize-css'
+			'backbone', 'marionette', 'radio'
 		]
 	},
 	output: {
@@ -59,7 +58,7 @@ var config_client = merge({}, config, {
 			{ test: /\.jade$/, loader: 'jade-loader?root='+JADE_ROOT },
 			{ test: /\.js$/, loader: 'babel-loader', query: {compact: false} },
 			{ test: require.resolve('backbone.marionette'), loader: 'expose?Marionette'},
-			{ test: require.resolve('backbone.radio'), loader: 'expose?Radio' }
+			{ test: require.resolve('backbone.radio'), loader: 'expose?Radio' },
 		]
 	},
 
@@ -68,10 +67,11 @@ var config_client = merge({}, config, {
 		new webpack.DefinePlugin(GLOBALS),
 		new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors-bundle.js'),
 		new AssetsPlugin({ path: dirs.dest_root, filename: 'assets.json' }),
-		new webpack.optimize.DedupePlugin(),
+
 		...(
 			is_prod
 			? [
+					new webpack.optimize.DedupePlugin(),
 					new webpack.optimize.AggressiveMergingPlugin(),
 					new webpack.optimize.UglifyJsPlugin(),
 				]
