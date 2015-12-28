@@ -1,3 +1,11 @@
+:local(.self)
+	flex 1
+	flex-container column
+
+	.sidebar-inner
+		flex 1
+		flex-container column
+
 .view-sidebar
 	flex 1
 	flex-vertical()
@@ -19,9 +27,10 @@
 			width 100vw
 
 	.sidebar-header
-		color color_font
-		background-color color_base
+		color sidebar_text
+		background-color sidebar_bg
 		height 128px
+		border-bottom 1px theme_border solid
 
 		> span
 			display block

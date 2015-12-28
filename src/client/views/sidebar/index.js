@@ -1,4 +1,6 @@
 import {ItemView} from 'marionette';
+import {UseCSS} from 'behaviors';
+
 import Radio from 'radio';
 import Model from './model';
 import tpl from './template.jade';
@@ -11,6 +13,8 @@ const SidebarView = ItemView.extend({
 	className: 'view-sidebar',
 	model: new Model(),
 
+	behaviors: { UseCSS: {style} },
+
 	ui: {
 		backbutton: '.sidebar-header .back-button',
 		backdrop: '.sidebar-backdrop',
@@ -21,11 +25,8 @@ const SidebarView = ItemView.extend({
 		'click @ui.backbutton': 'toggleSidebar',
 		'click @ui.menuItem': 'selectMenu'
 	},
-	
-	initialize(){
-		this.listenTo(this, 'render' , style.use);
-		this.listenTo(this, 'destroy', style.unuse);
 
+	initialize(){
 		this.listenTo(Channel, 'sidebar:toggle', this.toggleSidebar);
 	},
 
