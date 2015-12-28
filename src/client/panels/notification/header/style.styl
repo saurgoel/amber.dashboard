@@ -1,26 +1,35 @@
-.view-notification-header
+tabs_width  = 260px
+tabs_height = header_height
+
+:local(.self)
   // background-color subheader_bg_color
   background-color header_bg_color
   color subheader_font_color
   border-bottom 1px theme_border solid
+  // border-top 1px theme_border solid
+
 
 :local(.tabsContainer)
-  width 260px
+  width tabs_width
 
-  > ul
+  .subpanel-tabs
     flex-container row
 
-  > ul li
+  .subpanel-tab
     color inherit
-    border-bottom 3px transparent solid
     flex 1
-    width 100%
-    opacity 0.72
-    transition()
+
+  .subpanel-tab
     a
+      width 100%
       text-align center
-      padding 12px gutter_x
+      padding 6px gutter_x
+      border-bottom 2px transparent solid
+      opacity 0.72
+      transition()
     &:hover, &:active, &.is-active
-      opacity 1
+      a
+        opacity 1
     &.is-active
-      border-bottom-color color_base
+      a
+        border-bottom-color color_base
