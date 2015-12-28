@@ -8,11 +8,11 @@ var HomePageView = ItemView.extend({
 	className: 'view-homepage',
 
 	initialize(){
-		
+
 		this.listenTo(this, 'render', style.use);
 		this.listenTo(this, 'destroy', style.unuse);
 
-		Radio.trigger('header', 'update:subheader:title', 'Home')
+		Radio.trigger('header', 'update:sub-title', '')
 	}
 });
 

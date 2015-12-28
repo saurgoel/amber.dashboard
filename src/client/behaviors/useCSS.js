@@ -35,4 +35,5 @@ var UseCSS = Behavior.extend({
 
 });
 
+window.Behaviors.UseCSS = UseCSS;
 export default UseCSS;

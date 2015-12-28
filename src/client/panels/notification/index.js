@@ -20,7 +20,7 @@ var NotificationPanelLayout = LayoutView.extend({
 		this.subpanel = subpanel;
 		this.listenTo(this, 'attach', this.renderViews);
 
-		Radio.trigger('header', 'update:sub-title', 'Notification');
+		Radio.trigger('header', 'update:sub-title', 'Notification', '/notification');
 	},
 
 	renderViews(){

@@ -27,8 +27,10 @@ var HeaderView = LayoutView.extend({
 		this.listenTo(HeaderChannel, 'update:sub-title', this.updateSubtitle);
 	},
 
-	updateSubtitle(title = ''){
-		this.ui.subpanel.text(title)
+	updateSubtitle(title, url){
+		this.ui.subpanel
+			.attr('href', url)
+			.text(title);
 	},
 	toggleSidebar(e){
 		Radio.trigger('global', 'sidebar:toggle')

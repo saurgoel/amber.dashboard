@@ -23,12 +23,12 @@ class App extends Application {
 	}
 
 	onBeforeStart(){
-		this.setupBehaviors();
+
 		this.ajaxConfig();
 		this.handleHref();
 		this.initRouter();
 	}
-	
+
 	onStart(){
 		if (!Backbone.History.started){
 			Backbone.history.start({pushState: true, hashChange: false})
@@ -52,11 +52,6 @@ class App extends Application {
 		})
 	}
 
-	setupBehaviors(){
-		window.Behaviors = {};
-		Marionette.Behaviors.behaviorsLookup = ()=> window.Behaviors;
-	}
-
 	initRouter(){
 		this.Router = new AppRouter({
 			controller: new AppController(this.rootView)
@@ -70,7 +65,7 @@ class App extends Application {
 		$(document).on('click', 'a[href^="/"]', (e)=>{
 			let $a = $(e.currentTarget)
 			let href = $a.attr('href')
-			
+
 			// <a href='/some/route' data-pass=true>
 			if ($a.data('pass')) return;
 
@@ -91,7 +86,7 @@ class App extends Application {
 		});
 	}
 
-	
+
 }
 
 export default App;

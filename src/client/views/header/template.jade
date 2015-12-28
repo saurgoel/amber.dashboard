@@ -6,9 +6,8 @@ mixin NormalHeader()
   .sidebar-toggle
     +IconButton('', 'bars', 'flat')
   .brand-logo
-    | Amber
-    if subpanel
-      span.subpanel #{subpanel}
+    a.brand(href='/') Amber
+    a.subpanel
   .flex-space
   .user-area
     +IconButton('', 'user', 'flat')

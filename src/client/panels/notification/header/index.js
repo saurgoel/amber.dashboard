@@ -27,7 +27,7 @@ class NotificationHeader extends ItemView {
   }
 
   onRender(){
-    let frag = Backbone.history.getFragment();
+    let frag = '/' + Backbone.history.getFragment();
     this
       .getTabByFrag(frag)
       .parent()
@@ -39,10 +39,6 @@ class NotificationHeader extends ItemView {
 
     this.getActiveTab().parent().removeClass('is-active');
     this.getTabByFrag(frag).parent().addClass('is-active');
-
-    Radio.trigger('global', 'approuter:navigate', frag)
-
-    e.preventDefault();
   }
 
   getActiveTab(){
@@ -50,8 +46,9 @@ class NotificationHeader extends ItemView {
   }
 
   getTabByFrag(frag){
+    if (!frag) return null
     return this.$(this.ui.tab.selector).filter(function(i){
-      return $(this).attr('href').indexOf(frag) !== -1
+      return $(this).attr('href') === frag
     })
   }
 

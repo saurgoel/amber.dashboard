@@ -23,8 +23,22 @@
 
 // Logo
 .view-header .brand-logo
-	width 48px
 	font-size 24px
 	font-weight 100
-	> img
-		width 100%
+
+
+.view-header
+	.brand, .subpanel
+		border-bottom 1px transparent dotted
+		&:hover
+			text-decoration none
+			border-bottom-color color_base
+	.subpanel
+		margin-left 24px
+		position relative
+		&:empty
+			display none
+		&:after
+			content '/'
+			absolute top left -17px
+			font-size 28px
