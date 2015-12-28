@@ -1,5 +1,5 @@
 import {Application, RegionManager} from 'marionette';
-import Materialize from 'materialize-css';
+// import Materialize from 'materialize-css';
 import {Global} from 'channels';
 
 import AppController from './appController';
@@ -12,6 +12,10 @@ const regions = {
 	Sidebar: '#app-sidebar',
 	Content: '#app-content'
 }
+
+
+
+
 
 class App extends Application {
 	initialize(){
@@ -86,7 +90,7 @@ class App extends Application {
 		});
 	}
 
-
 }
+
 
 export default App;

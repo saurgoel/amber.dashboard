@@ -2,10 +2,10 @@
 global-reset()
 border-box-html()
 
-@import '~font-awesome/css/font-awesome.css'
-@import '~materialize-css/dist/css/materialize.min.css'
+@import '~font-awesome/css/font-awesome.min.css'
+@import '~animate.css/animate.min.css'
+// @import '~materialize-css/dist/css/materialize.min.css'
 // @import '~material-design-lite/material.css'
-
 
 body
 	background-color theme_bg
@@ -26,12 +26,9 @@ body
 		z-index z1
 
 	#app-header
-		fixed top left right
-		z-index z4
+		absolute top left right
+		z-index z6
 		height header_height
-		&.in-small-mode
-			height header_height_small
-			overflow hidden
 
 	#app-content
 		flex 1
@@ -42,7 +39,7 @@ body
 
 	#app-sidebar
 		width sidebar_width
-		fixed top left (-1*sidebar_width) bottom
+		absolute top left (-1*sidebar_width) bottom
 		z-index z6
 		opacity 0.6
 		flex-vertical()

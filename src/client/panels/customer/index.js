@@ -16,13 +16,13 @@ const CustomerPanelView = LayoutView.extend({
 	sidenav_items: {
 
 	},
-	
+
 	initialize(options){
 		this.listenTo(this, 'render', style.use);
 		this.listenTo(this, 'destroy', style.unuse);
 	},
 	onRender(){
-		Radio.trigger('header', 'update:subheader:title', 'Customers')
+		Radio.trigger('header', 'update:sub-title', 'Customer', '/customer');
 		// this.getRegion('SideNav').show( new SideNav )
 	}
 

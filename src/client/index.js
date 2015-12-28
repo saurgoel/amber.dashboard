@@ -3,23 +3,25 @@
 window.$ = window.jQuery = require('jquery');
 window._ = require('underscore');
 
+// Inject into head
+// require('style/url!file!font-awesome/css/font-awesome.min.css');
+// require('style/url!file!animate.css/animate.min.css');
+
+
 var Backbone = require('backbone');
 var Marionette = require('marionette');
 var Radio = require('radio');
 
-// IIFE
+
 (function(){
-  if (__DEV__) {
+  if (__DEV__)
     Radio.DEBUG = true;
-    if (window.__agent && !window.__agent.patchedApp)
-      __agent.start(Backbone, Marionette);
-  }
+  if ( window.__agent && !_.has(window.__agent, 'patchedApp') )
+    __agent.start(Backbone, Marionette);
 
   window.Behaviors = {};
   Marionette.Behaviors.behaviorsLookup = ()=> window.Behaviors;
 })();
-
-
 
 function start(config){
   Radio.reply('global', 'config', config);
@@ -27,7 +29,8 @@ function start(config){
 }
 
 // App
-let Application = require('./app');
+var Application = require('./app');
+
 window.app = new Application();
 Promise
   .resolve($.getJSON('/config'))
