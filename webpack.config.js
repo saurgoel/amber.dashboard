@@ -7,8 +7,6 @@ import AssetsPlugin from 'assets-webpack-plugin';
 import nib from 'nib';
 import axis from 'axis';
 import autoprefixer from 'autoprefixer-stylus';
-import jeet from 'jeet';
-import rupture from 'rupture';
 
 
 import baseConfig from './config/base.config';
@@ -25,14 +23,18 @@ const JADE_ROOT = path.resolve('./src/jade');
 // Get base config for environment
 var config = baseConfig({ is_prod });
 
-var config_client = merge({}, config, { 
+var config_client = merge({}, config, {
 	target: 'web',
 	entry: {
 		main: [
 			...( is_prod ? [] : ['webpack-hot-middleware/client']),
 			'./src/client/index',
 		],
-		vendors: ['jquery', 'underscore', 'backbone', 'marionette', 'radio', 'hammerjs','materialize-css']
+		vendors: [
+			'jquery', 'underscore',
+			'backbone', 'marionette', 'radio',
+			'hammerjs', 'materialize-css'
+		]
 	},
 	output: {
 		path: dirs.dest_public,
@@ -45,35 +47,34 @@ var config_client = merge({}, config, {
 		alias: {
 			marionette: 'backbone.marionette',
 			radio: 'backbone.radio',
+			jQuery: 'jquery'
 		}
 	},
 
 	module: {
 		loaders: [
 			...config.module.loaders,
-			{ test: /\.css$/,  loader: 'style-loader!css-loader' },
+			{ test: /\.css$/,  loader: 'style-loader' },
 			{ test: /\.styl$/, loader: 'style-loader/useable!css-loader!stylus-loader' },
 			{ test: /\.jade$/, loader: 'jade-loader?root='+JADE_ROOT },
 			{ test: /\.js$/, loader: 'babel-loader', query: {compact: false} },
 			{ test: require.resolve('backbone.marionette'), loader: 'expose?Marionette'},
-			{ test: require.resolve('backbone.radio'), loader: 'expose?Radio' },
-			{ test: require.resolve('materialize-css'), loader: 'expose?Materialize' }
+			{ test: require.resolve('backbone.radio'), loader: 'expose?Radio' }
 		]
 	},
 
 	plugins: [
 		...config.plugins,
 		new webpack.DefinePlugin(GLOBALS),
-		new webpack.ProvidePlugin({ jQuery: 'jquery', '$': 'jquery'}),
 		new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors-bundle.js'),
 		new AssetsPlugin({ path: dirs.dest_root, filename: 'assets.json' }),
+		new webpack.optimize.DedupePlugin(),
 		...(
-			is_prod 
+			is_prod
 			? [
-					new webpack.optimize.DedupePlugin(),
-					new webpack.optimize.UglifyJsPlugin(),
 					new webpack.optimize.AggressiveMergingPlugin(),
-				] 
+					new webpack.optimize.UglifyJsPlugin(),
+				]
 			: []
 		),
 		...(!is_prod ? [
@@ -82,7 +83,7 @@ var config_client = merge({}, config, {
     ] : [])
 	],
 	stylus: {
-    use: [nib(), axis(), rupture(), jeet(), autoprefixer({browsers: ['last 2 versions']})],
+    use: [nib(), axis(), autoprefixer({browsers: ['last 2 versions']})],
     import: [ path.resolve(__dirname, './src/stylus/index.styl') ],
     error: !is_prod ? true : false,
     compress: !is_prod ? false: true,
@@ -100,7 +101,7 @@ var config_server = merge({}, config, {
 		libraryTarget: 'commonjs2',
 	},
 	devtool: 'source-map',
-	
+
 	externals: [
 		/^[a-z][a-z\/\.\-0-9]*$/,
 		/^ext!/
@@ -114,7 +115,7 @@ var config_server = merge({}, config, {
 		__filename: false,
 		__dirname: false
 	},
-	
+
 	resolve: {
 		modulesDirectories: ['node_modules']
 	},

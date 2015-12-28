@@ -1,5 +1,4 @@
 import _ from 'underscore';
-import {extend} from 'underscore';
 import {UseCSS} from '../behaviors';
 
 /**
@@ -19,7 +18,7 @@ export function WithCSS(style){
 		var bhs = _.result(view.prototype, 'behaviors') || null;
 		_.isUndefined(bhs)
 			? bhs = {UseCSS: {style}}
-			: view.prototype.behaviors = extend({}, bhs, {UseCSS: {style}});
+			: view.prototype.behaviors = _.extend({}, bhs, {UseCSS: {style}});
 
 		return view
 	}
@@ -28,8 +27,8 @@ export function WithCSS(style){
 
 /**
  * [ProtoProp Add properties directly to class's prototype]
- * @param  {[string/]} propName [Can be string/object]
- * @param  {[]} [propVal]  [Optional if first argument is object, property value in other cases]
+ * @param  {[string/object]} propName [Can be string/object]
+ * @param  {[value]} [propVal]  [Optional if first argument is object, property value in other cases]
  * @return {[type]}          [Modified Class]
  *
  * Usage:

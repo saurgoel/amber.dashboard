@@ -1,6 +1,5 @@
 import _ from 'underscore';
 import $ from 'jquery';
-import 'velocity-animate/velocity.min';
 
 import Radio from 'radio';
 import App from './app';
@@ -13,8 +12,8 @@ window._ = _;
 
 
 function start(config){
-	Radio.reply('global', 'config', config);
-	app.start(config);
+  Radio.reply('global', 'config', config);
+  app.start(config);
 }
 
 
@@ -24,9 +23,9 @@ function start(config){
 window.app = new App();
 
 Promise
-	.resolve($.getJSON('/config'))
-	.then(start)
-	.catch(err => console.error(err.stack) );
+  .resolve($.getJSON('/config'))
+  .then(start)
+  .catch(err => console.error(err.stack) );
 
 
 
