@@ -4,13 +4,13 @@ include /mixins/button.jade
 
 mixin NormalHeader()
   .sidebar-toggle
-    +IconButton('', 'bars', 'flat')
+    +Icon('bars')
   .brand-logo
     a.brand(href='/') Amber
     a.subpanel
   .flex-space
-  .user-area
-    +IconButton('', 'user', 'flat')
+  .user-button
+    +Icon('user')
 
 
 //- Render this

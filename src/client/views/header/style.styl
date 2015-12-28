@@ -1,38 +1,43 @@
-.view-header
-	height 100%
+header_button()
+	font-size 24px
+	padding 8px 12px
+	cursor pointer
+	transition()
+	&:hover
+		background-color rgba(#000, 0.08)
+	&:active
+		background-color rgba(color_base, 0.2)
+
+:local(.self)
 	color header_font_color
 	background-color header_bg_color
-	// border-bottom 1px rgba(#000, 0.36) solid
 	flex-container row center
-	transition()
-
-// Flex-Spacing
-.view-header .flex-space
-	flex 1
-
-
-.view-header .sidebar-toggle
-	height header_height
-
-// Buttons
-.view-header .btn-flat
-	padding 18px gutter_x
-	margin-right 12px
 	height 100%
-	color inherit
+	// border-bottom 1px rgba(#000, 0.36) solid
 
-// Logo
-.view-header .brand-logo
-	font-size 24px
-	font-weight 100
+	.flex-space
+		flex 1
 
+	.brand-logo
+		font-size 24px
+		font-weight 100
 
-.view-header
+	.sidebar-toggle
+		margin-left 12px
+		margin-right gutter_x
+		rounded()
+		header_button()
+
+	.user-button
+		margin-right gutter_x
+		header_button()
+
 	.brand, .subpanel
 		border-bottom 1px transparent dotted
 		&:hover
 			text-decoration none
 			border-bottom-color color_base
+
 	.subpanel
 		margin-left 24px
 		position relative

@@ -11,14 +11,18 @@ const HeaderChannel = Radio.channel('header');
 var HeaderView = LayoutView.extend({
 	template: tpl,
 	className: 'view-header',
+
 	behaviors: {UseCSS: {style}},
+
 	regions: {
 		SubHeader: '#region-sub-header'
 	},
+
 	ui: {
 		menuIcon: '.sidebar-toggle',
 		subpanel: '.subpanel'
 	},
+
 	events: {
 		'click @ui.menuIcon': 'toggleSidebar'
 	},
