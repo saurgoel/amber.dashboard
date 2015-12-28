@@ -3,12 +3,15 @@ include /mixins/button.jade
 
 
 mixin NormalHeader()
-	.sidebar-toggle
-		+IconButton('', 'bars', 'flat')
-	.brand-logo Amber
-	.flex-space
-	.user-area
-		+IconButton('', 'user', 'flat')
+  .sidebar-toggle
+    +IconButton('', 'bars', 'flat')
+  .brand-logo
+    | Amber
+    if subpanel
+      span.subpanel #{subpanel}
+  .flex-space
+  .user-area
+    +IconButton('', 'user', 'flat')
 
 
 //- Render this
