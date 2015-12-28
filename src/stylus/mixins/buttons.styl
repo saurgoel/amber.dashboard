@@ -1,6 +1,11 @@
 // Clickable buttons
-button-clickable()
-	hover-pop()
-	click-shrink()
-	transition()
-	cursor pointer
+button-clickable(button_type)
+  cursor pointer
+  transition()
+  &:hover
+    background-color rgba(#000, 0.08)
+  &:active
+    background-color rgba(color_base, 0.2)
+
+  if button_type == rounded
+    border-radius 50%
