@@ -3,7 +3,7 @@ global-reset()
 border-box-html()
 
 @import '~font-awesome/css/font-awesome.css'
-@import '~materialize-css/bin/materialize.css'
+@import '~materialize-css/dist/css/materialize.min.css'
 // @import '~material-design-lite/material.css'
 
 
@@ -12,18 +12,19 @@ body
 	font-size font_size
 	font-family font_stack
 	line-height line_height
-		
+
 	color theme_font
 
 
 	overflow hidden
 	absolute top left right bottom
 	z-index z0
-	
+
 	#root
+		flex-container column
 		absolute top left right bottom
 		z-index z1
-	
+
 	#app-header
 		fixed top left right
 		z-index z4
@@ -31,13 +32,14 @@ body
 		&.in-small-mode
 			height header_height_small
 			overflow hidden
-		
+
 	#app-content
+		flex 1
 		flex-container column
 		padding-top header_height
-		overflow-y auto
+		overflow hidden
 		transition()
-	
+
 	#app-sidebar
 		width sidebar_width
 		fixed top left (-1*sidebar_width) bottom
@@ -48,7 +50,7 @@ body
 		&.is-active
 			left 0
 			opacity 1
-	
+
 
 // Default Link Styles
 a[href]
@@ -57,11 +59,15 @@ a[href]
 	display inline-block
 	&:hover, &:active, &:focus
 		color inherit
-		
 
-// Big Messages
-.center-title
-	padding-top 20vh
-	font-weight 100
-	font-size 5em
-	text-align center
+
+// Region, Layouts and Views
+
+
+:not([class^='layout-']) > [class^='region-']
+	flex 1
+	flex-container column
+
+[class^='region-'] > [class^='view-']
+		flex 1
+		flex-container column
