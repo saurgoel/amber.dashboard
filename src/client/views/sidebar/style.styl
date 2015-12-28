@@ -1,72 +1,73 @@
 :local(.self)
 	flex 1
 	flex-container column
+	font-size 24px
 
 	.sidebar-inner
 		flex 1
 		flex-container column
+		background-color theme_widget
 
-.view-sidebar
-	flex 1
-	flex-vertical()
-	font-size 24px
-	.sidebar-inner
-		background-color sidebar_bg
-		flex 1
-		flex-vertical()
 
-	.sidebar-backdrop
-		fixed top left bottom
-		opacity 0
-		background-color rgba(#000, 0.36)
-		cursor pointer
-		transition opacity time_2x ease
-		z-index -1
-		&.is-active
-			opacity 1
-			width 100vw
 
-	.sidebar-header
-		color sidebar_text
-		background-color sidebar_bg
-		height 128px
-		border-bottom 1px theme_border solid
 
-		> span
-			display block
-			font-weight 100
-			margin-top gutter_y
-			margin-left gutter_x
+:local(.backdrop)
+	fixed top left bottom
+	opacity 0
+	background-color rgba(#000, 0.36)
+	cursor pointer
+	transition opacity time_2x ease
+	z-index -1
+
+	&.is-active
+		opacity 1
+		width 100vw
+
+
+
+
+:local(.header)
+	color sidebar_text
+	background-color sidebar_bg
+	height 128px
+	border-bottom 1px theme_border solid
 
 	.back-button
 		padding gutter_x
-		button-clickable()
+		button-clickable rounded
+
+	.title
+		display block
+		font-weight 100
+		margin-top gutter_y
+		margin-left gutter_x
 
 
 
-
-	.list-categories
-		list-style none
+:local(.menulist)
+	list-style none
 
 	.list-categories-item
 		font-weight lighter
 		color sidebar_text
 		height auto
-
-		padding 8px gutter_x 8px (gutter_x - 6)
-		box-sizing border-box
-		font-size 18px
-		width 100%
-
+		cursor pointer
 		border-left 6px transparent solid
-		> i
+
+		a[href]
+			padding 12px gutter_x 12px (gutter_x - 6)
+			font-size 18px
+			width 100%
+
+		i
 			width 36px
 			margin-right 8px
 			margin-left -4px
 
 		&:hover
-			background-color rgba(#000, 0.1)
+			color color_base
 			border-left-color rgba(#000, 0.5)
 		&.is-active, &:active
+			color color_base
 			background-color rgba(#000, 0.1)
 			border-left-color color_base

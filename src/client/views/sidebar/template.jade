@@ -2,19 +2,19 @@ include /mixins/icon.jade
 
 
 mixin CategoryItem(menu)
-	li.list-categories-item(
-		class = menu.active ? 'is-active' : '',
-		data-route = menu.route
-	)
-		+IconWithText(menu.icon + ' fa-fw', menu.name, 'left')
+  li.list-categories-item( class = menu.active ? 'is-active' : '' )
+    a(href=menu.route)
+      +IconWithText(menu.icon + ' fa-fw', menu.name, 'left')
+
 
 .sidebar-inner
-	//- This will be rendered
-	.sidebar-header
-		+Icon('arrow-left back-button')
-		span.title Services
-	ul.list-categories
-		each menu in menus
-			+CategoryItem(menu)
+  .sidebar-header(class = s.header)
+    .back-button
+      +Icon('arrow-left')
+    span.title Services
 
-.sidebar-backdrop
+  ul.list-categories(class = s.menulist)
+    each menu in menus
+      +CategoryItem(menu)
+
+.sidebar-backdrop(class = s.backdrop)

@@ -11,35 +11,35 @@ let Channel = Radio.channel('global');
 const SidebarView = ItemView.extend({
 	template: tpl,
 	className: 'view-sidebar',
-	model: new Model(),
+	model: Model,
 
 	behaviors: { UseCSS: {style} },
 
 	ui: {
 		backbutton: '.sidebar-header .back-button',
 		backdrop: '.sidebar-backdrop',
-		menuItem: '.list-categories-item'
+		menuItem: '.list-categories-item > a'
 	},
 	events: {
 		'click @ui.backdrop'  : 'toggleSidebar',
 		'click @ui.backbutton': 'toggleSidebar',
-		'click @ui.menuItem': 'selectMenu'
+		'click @ui.menuItem': 'hideSidebar'
 	},
 
 	initialize(){
 		this.listenTo(Channel, 'sidebar:toggle', this.toggleSidebar);
 	},
 
-	selectMenu(e){
-		let route = e.currentTarget.getAttribute('data-route');
-		this.model.selectMenu({route});
-		Radio.trigger('global', 'approuter:navigate', route)
-		this.toggleSidebar();
+	hideSidebar(){
+		_.delay( ()=> {return this.toggleSidebar()} , 200);
 	},
 
 	toggleSidebar(e){
 		this.$el.parent().toggleClass('is-active');
-		this.ui.backdrop.toggleClass('is-active', this.$el.parent().hasClass('is-active'));
+		this.ui.backdrop.toggleClass(
+			'is-active',
+			this.$el.parent().hasClass('is-active')
+		);
 	}
 
 })
