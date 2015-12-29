@@ -1,32 +1,30 @@
-import {Model, Collection} from 'backbone';
-
-import {ItemView} from 'marionette';
+import {LayoutView} from 'marionette';
 import {UseCSS} from 'behaviors';
 
 import tpl from './template.jade';
 import style from './style.styl';
 
+import HeaderView from './header/index';
 
-var model = new Model({title: 'Product'})
-var collection = new Collection([
-  {name:'x'},
-  {name:'y'},
-  {name:'z'}
-]);
-
-
-var ProductPage = ItemView.extend({
+var ProductPageLayout = LayoutView.extend({
   template: tpl,
+  className: 'layout-product-page',
+
   behaviors: {UseCSS: {style}},
-  modelEvents: {
-    change: 'render'
+  regions: {
+    Header: '.region-header',
+    Content: '.region-content'
   },
 
-  model: model,
   initialize(){
-    window.aa = this;
     Radio.trigger('header', 'update:sub-title', 'Product', '/product');
+  },
+
+  onAttach(){
+    this.headerView = new HeaderView();
+    this.Header.show( this.headerView );
   }
+
 });
 
-export default ProductPage;
+export default ProductPageLayout;
