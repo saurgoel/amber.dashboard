@@ -1,8 +1,16 @@
 include /mixins/button.jade
 
-.control-bar(class=s.controls)
-  .input-field(class=s.search)
+mixin SearchBox
+  .input-group(class=s.search)
     input(type='text', placeholder='Search')
     +IconButton('', 'search', 'flat')(class='search-icon')
-.list-wrapper(class=s.listwrapper)
-  ul.emails-list
+
+mixin VersionFilter
+  .btn-group
+    input(type='checkbox')
+
+
+
+.control-bar(class=s.controls)
+  +SearchBox
+ul.emails-list

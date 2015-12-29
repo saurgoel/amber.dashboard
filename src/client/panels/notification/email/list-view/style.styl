@@ -1,37 +1,52 @@
 icon_color = rgba(#000, 0.3)
 icon_color_hover = rgba(#000, 0.6)
-
 shadow_color = rgba(#000, 0.24)
+
+:local(.self)
+  flex 1
+  flex-container column
+  .control-bar
+    flex-basis 64px
+    flex-shrink 0
+  ul.emails-list
+    flex 1
+    overflow-y auto
+    padding 20px
+
 
 :local(.controls)
   background-color theme_widget
   position relative
   z-index z3
   border-bottom 1px theme_border solid
+  padding 8px gutter_x
   height 64px
   // box-shadow 0px 5px 10px -5px shadow_color
 
+  .control-group
+    display inline-block
+
 
 :local(.search)
-  flex-container row
   position relative
   margin-top 0
   height 100%
   color lighten(theme_font, 20%)
+  border 1px theme_border solid
+  border-radius 2px
   .search-icon
     absolute top right
     padding 14px gutter_x 0 gutter_x
     height 64px
-    border-radius 0
+    border-radius 2px
     color inherit
     opacity 0.6
 
   input
-    flex 1
     font-weight 100
     font-size 20px
     border 1px transparent solid
-    border-radius 0
+    border-radius 2px
     padding 0 gutter_x
     height 100%
     &:focus + .search-icon
@@ -43,37 +58,3 @@ shadow_color = rgba(#000, 0.24)
   &:focus
     .search-icon
       color icon_color_hover
-
-
-
-
-
-:local(.listwrapper)
-
-  background-color theme_widget
-  background-color rgba(#000, 0.12)
-
-  ul.emails-list
-    overflow-y scroll
-    display flex
-    flex-direction column
-    min-height 0
-
-
-  .view-email-item
-    background-color theme_widget
-    border-bottom 1px theme_border solid
-    padding 8px gutter_x
-
-    font-weight normal
-    color theme_font
-
-    cursor pointer
-
-    &:hover, &:active, &.is-active
-      color #fff
-    &:hover
-      background-color rgba(#000, 0.1)
-    &:active, &.is-active
-      background-color rgba(color_base, 0.72)
-      font-weight 400
