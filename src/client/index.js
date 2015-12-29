@@ -36,10 +36,3 @@ Promise
   .resolve($.getJSON('/config'))
   .then(start)
   .catch(err => console.error(err.stack) );
-
-
-
-// HMR Fix
-if (__DEV__ && module.hot){
-  module.hot.accept();
-}

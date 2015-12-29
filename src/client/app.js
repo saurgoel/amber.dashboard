@@ -13,10 +13,6 @@ const regions = {
 	Content: '#app-content'
 }
 
-
-
-
-
 class App extends Application {
 	initialize(){
 		this.rootView = new RegionManager({el: '#root', regions});
@@ -90,6 +86,12 @@ class App extends Application {
 		});
 	}
 
+}
+
+
+// HMR Fix
+if (__DEV__ && module.hot){
+  module.hot.accept();
 }
 
 
