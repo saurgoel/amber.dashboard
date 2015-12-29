@@ -1,0 +1,31 @@
+/**
+ * TABS
+ *
+ * Usage:
+ * .header-tabs
+ *   tabs 260px
+ */
+
+tabs(tabs_width = 100%)
+  flex-container row
+  width tabs_width
+
+  > li
+    flex 1
+    text-align center
+    opacity 0.72
+    > a
+      width 100%
+      border-bottom 2px transparent solid
+      padding 6px gutter_x
+      color inherit
+      text-decoration none
+      transition()
+
+    &:hover, &:active, &.is-active
+      a
+        opacity 1
+
+    &.is-active
+      a
+        border-bottom-color color_base

@@ -1,12 +1,12 @@
-include /mixins/grid.jade
-include /mixins/card.jade
+include /mixins/icon.jade
 
-+Row
-	+Column(4)
-		+Card('amber')
-			+CardContent('Customers Panel')
-				p This is some random card content
-			+CardAction
-				a(href='#/customer/leads') Leads
-	+Column(8)
-		p This is column 8
+mixin Tile(data)
+  a.tile(href=data.url)&attributes(attributes)
+    .tile-icon
+      +Icon(data.icon)
+    .tile-name #{data.name}
+
+
+.tiles-wrapper(class=s.tiles)
+  each panel in panels
+    +Tile(panel)(class=s.tile)
