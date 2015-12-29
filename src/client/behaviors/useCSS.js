@@ -22,10 +22,11 @@ var UseCSS = Behavior.extend({
 		// Export of .self
 		// directly to this.el element
 		// or extend this.className otherwise
-		let self_export = _.has(locals, 'self') ? locals.self : '';
-		this.view.isRendered
-			? this.view.el.className += ` ${self_export}`
-			: this.view.className += ` ${self_export}`;
+		let klass = _.has(locals, 'self') ? locals.self : '';
+		this.view.className = `${this.view.className || ''} ${klass}`;
+
+		if (this.view.isRendered)
+			this.view.el.className = `${this.view.el.className || ''} ${klass}`;
 	},
 
 	onBeforeDestroy(){
