@@ -11,25 +11,5 @@ tabs_height = header_height
 
 :local(.tabsContainer)
   width tabs_width
-
   .subpanel-tabs
-    flex-container row
-
-  .subpanel-tab
-    color inherit
-    flex 1
-
-  .subpanel-tab
-    a
-      width 100%
-      text-align center
-      padding 6px gutter_x
-      border-bottom 2px transparent solid
-      opacity 0.72
-      transition()
-    &:hover, &:active, &.is-active
-      a
-        opacity 1
-    &.is-active
-      a
-        border-bottom-color color_base
+    tabs()

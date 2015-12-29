@@ -1,4 +1,26 @@
+tile_size = 160px
 
-.view-homepage
-	padding gutter_y 0
 
+:local(.self)
+  flex 1
+  flex-container column
+  padding gutter_y gutter_x
+
+:local(.tiles)
+  flex 1
+  flex-container row
+  align-content center
+  flex-wrap wrap
+
+:local(.tile)
+  min-width tile_size
+  height tile_size
+
+  margin 20px
+  padding 16px
+
+  background-color theme_widget
+  color theme_font
+  font-size 24px
+  font-weight lighter
+  text-align center
