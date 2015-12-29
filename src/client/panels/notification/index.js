@@ -26,11 +26,11 @@ var NotificationPanelLayout = LayoutView.extend({
 	renderViews(){
 		// Subheader
 		this.headerView = new NotificationHeader();
-		this.getRegion('Header').show(this.headerView)
+		this.Header.show(this.headerView)
 
 		// Content
 		if (this.subpanel)
-			this.getRegion('Content').show( this.subpanel )
+			this.Content.show( this.subpanel )
 	}
 
 });
