@@ -6,16 +6,15 @@
  *   tabs 260px
  */
 
-tabs(tabs_width = 100%)
-  flex-container row
-  width tabs_width
-
+tabs()
+  list-style none
   > li
-    flex 1
+    display inline-block
+    width auto
     text-align center
-    opacity 0.72
     > a
       width 100%
+      opacity 0.72
       border-bottom 2px transparent solid
       padding 6px gutter_x
       color inherit
@@ -24,6 +23,7 @@ tabs(tabs_width = 100%)
 
     &:hover, &:active, &.is-active
       a
+        color color_base
         opacity 1
 
     &.is-active

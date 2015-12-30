@@ -4,12 +4,12 @@ tabs_height = header_height
 :local(.self)
   // background-color subheader_bg_color
   background-color header_bg_color
-  color subheader_font_color
+  // color subheader_font_color
   border-bottom 1px theme_border solid
   // border-top 1px theme_border solid
 
 
 :local(.tabsContainer)
-  width tabs_width
   .subpanel-tabs
+    color theme_font
     tabs()
