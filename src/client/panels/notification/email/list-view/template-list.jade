@@ -3,7 +3,7 @@ include /mixins/button.jade
 mixin SearchBox
   .input-group(class=s.search)
     input(type='text', placeholder='Search')
-    +IconButton('', 'search', 'flat')(class='search-icon')
+    +ButtonWithIcon('', 'search', 'flat')(class='search-icon')
 
 mixin VersionFilter
   .btn-group
