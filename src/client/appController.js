@@ -66,6 +66,7 @@ class AppController extends Controller {
 
 	}
 
+	// ---------- PRODUCTS PANEL ----------
 	product(){
 		require.ensure([], ()=>{
 			var view = require('./panels/product/index');
@@ -73,42 +74,44 @@ class AppController extends Controller {
 		})
 	}
 
-	// Notifications Panel
-	notification(){
-		NotificationController.index(this.Content, {});
-	}
 
+
+
+	// ------- NOTIFICATIONS PANEL ----------
+	notification(){
+		NotificationController(this.Content, {});
+	}
 	// Emails
 	notificationEmailList(){
-		NotificationController.listAllEmail(this.Content);
+		NotificationController(this.Content, {mode: 'email', action: 'list'});
 	}
 	notificationEmailShow(id){
-		NotificationController.showOneEmail(this.Content, id);
+		NotificationController(this.Content, {id, mode: 'email', action: 'show'});
 	}
 	notificationEmailEdit(id){
-		NotificationController.editOneEmail(this.Content, id);
+		NotificationController(this.Content, {id, mode: 'email', action: 'edit'});
 	}
 
 	// SMS
 	notificationSMSList(){
-		NotificationController.listAllSMS(this.Content);
+		NotificationController(this.Content, {mode: 'sms', action: 'list'});
 	}
 	notificationSMSShow(id){
-		NotificationController.showOneSMS(this.Content, id);
+		NotificationController(this.Content, {id, mode: 'sms', action: 'show'});
 	}
 	notificationSMSEdit(id){
-		NotificationController.editOneSMS(this.Content, id);
+		NotificationController(this.Content, {id, mode: 'sms', action: 'edit'});
 	}
 
 	// Push
 	notificationPushList(){
-		NotificationController.listAllPush(this.Content);
+		NotificationController(this.Content, {mode: 'push', action: 'list'});
 	}
 	notificationPushShow(id){
-		NotificationController.showOnePush(this.Content, id);
+		NotificationController(this.Content, {id, mode: 'push', action: 'show'});
 	}
 	notificationPushEdit(id){
-		NotificationController.editOnePush(this.Content, id);
+		NotificationController(this.Content, {id, mode: 'push', action: 'edit'});
 	}
 
 
