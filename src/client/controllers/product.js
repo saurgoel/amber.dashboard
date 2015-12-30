@@ -2,6 +2,13 @@ function ProductController(region, {id, mode, action}){
   require.ensure([], ()=>{
     let baseView = require('../panels/product/index');
 
+    let providersView = require('../panels/product/providers/index');
+    let institutionsView = require('../panels/product/institutions/index');
+    let servicesView = require('../panels/product/services/index');
+    let productsView = require('../panels/product/products/index');
+    let contentView = require('../panels/product/content/index');
+
+
 
     let subpanel;
     switch(mode){

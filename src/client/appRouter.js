@@ -29,11 +29,17 @@ const appRoutes = {
   'notification/push/:id'      : 'notificationPushShow',
   'notification/push/:id/edit' : 'notificationPushEdit',
 
-  'notification/*notfound': 'notfound',
-
-
+  // ---- PRODUCTS PANEL ----
   'product': 'product',
+  'product/providers'   : 'productProviders',
+  'product/institutions': 'productInstitutions',
+  'product/services' : 'productServices',
+  'product/content'  : 'productContent',
+  'product/products' : 'productProducts',
 
+
+
+  // Catch 404
   '*notfound': 'notfound'
 
 }

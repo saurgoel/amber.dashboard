@@ -1,6 +1,7 @@
 import {Controller} from 'marionette';
 
 import NotificationController from 'controllers/notification';
+import ProductController from 'controllers/product';
 
 import HeaderView   from './views/header/index';
 import SidebarView  from './views/sidebar/index';
@@ -66,14 +67,6 @@ class AppController extends Controller {
 
 	}
 
-	// ---------- PRODUCTS PANEL ----------
-	product(){
-		require.ensure([], ()=>{
-			var view = require('./panels/product/index');
-			this.toContent(view);
-		})
-	}
-
 
 
 
@@ -112,6 +105,29 @@ class AppController extends Controller {
 	}
 	notificationPushEdit(id){
 		NotificationController(this.Content, {id, mode: 'push', action: 'edit'});
+	}
+
+
+
+	// ---------- PRODUCTS PANEL ----------
+	product(){
+		ProductController(this.Content, {});
+	}
+
+	productProviders(){
+		ProductController(this.Content, {mode: 'providers', action: 'list'})
+	}
+	productProducts(){
+		ProductController(this.Content, {mode: 'products', action: 'list'})
+	}
+	productServices(){
+		ProductController(this.Content, {mode: 'services', action: 'list'})
+	}
+	productContent(){
+		ProductController(this.Content, {mode: 'content', action: 'list'})
+	}
+	productInstitutions(){
+		ProductController(this.Content, {mode: 'institutions', action: 'list'})
 	}
 
 
