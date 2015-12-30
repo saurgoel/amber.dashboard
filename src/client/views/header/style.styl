@@ -1,7 +1,7 @@
 header_button()
 	font-size 24px
 	padding 8px 12px
-	button-clickable rounded
+	button-clickable()
 
 :local(.self)
 	color header_font_color
@@ -26,6 +26,7 @@ header_button()
 	.user-button
 		margin-right gutter_x
 		header_button()
+		border-radius 2px
 
 	.brand, .subpanel
 		border-bottom 1px transparent dotted

@@ -2,16 +2,22 @@ include /mixins/icon.jade
 include /mixins/button.jade
 
 
+
+
 mixin NormalHeader()
+  - var url = getLogoutUrl();
+
   .sidebar-toggle
     +Icon('bars')
   .brand-logo
-    a.brand(href='/') Amber
+    a.brand(href='/') Amber2
     a.subpanel
   .flex-space
-  .user-button
-    +Icon('user')
-
+  +ButtonWithIcon('', 'power-off')(
+    class='user-button'
+    href= url
+    title= 'Logout'
+  )
 
 //- Render this
 +NormalHeader

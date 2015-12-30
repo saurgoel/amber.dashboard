@@ -7,16 +7,11 @@ import style from './style.styl';
 
 const HeaderChannel = Radio.channel('header');
 
-
 var HeaderView = LayoutView.extend({
 	template: tpl,
 	className: 'view-header',
 
 	behaviors: {UseCSS: {style}},
-
-	regions: {
-		SubHeader: '#region-sub-header'
-	},
 
 	ui: {
 		menuIcon: '.sidebar-toggle',
@@ -25,6 +20,15 @@ var HeaderView = LayoutView.extend({
 
 	events: {
 		'click @ui.menuIcon': 'toggleSidebar'
+	},
+
+	templateHelpers(){
+		return {
+			getLogoutUrl(){
+				let config = Radio.request('global', 'config');
+				return `${config.accounts_api_url}/auth/accounts/logout?redirect_to=${window.location.origin}`
+			}
+		}
 	},
 
 	initialize(){
