@@ -9,8 +9,8 @@ var index_handler = (req, res)=> {
 };
 
 var config_handler = (req, res)=> {
-	let blacklist = ['port'];
-	
+	let blacklist = ['port', 'bsPort', 'serverPort', 'accounts_api_internal_url'];
+
 	let safe = {
 		...omit(config, blacklist),
 		user: req.session.user
