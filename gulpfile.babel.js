@@ -127,7 +127,7 @@ gulp.task('sync', ['serve'], cb => {
 
   browserSync({
     logPrefix: 'Housing: ',
-    open: false, notify: true, https: false,
+    open: false, notify: false, https: false,
     port: amberConfig.bsPort || 3000,
     proxy: {
       target: `localhost:${amberConfig.serverPort}`,
