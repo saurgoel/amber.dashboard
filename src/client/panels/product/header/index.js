@@ -18,6 +18,12 @@ var ProductServiceHeader = ItemView.extend({
   behaviors: {UseCSS: {style}},
   templateHelpers(){
     return {tabslist}
+  },
+  onRender(){
+    let frag = Backbone.history.getFragment();
+    this.$('.tab a').each(function(){
+      $(this).parent().toggleClass('is-active', $(this).attr('href') === `/${frag}`)
+    });
   }
 });
 
