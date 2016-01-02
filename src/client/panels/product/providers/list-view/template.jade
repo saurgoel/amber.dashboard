@@ -1,0 +1,21 @@
+include /mixins/icon.jade
+include /mixins/button.jade
+
+.control-bar
+
+  .search-box(class=s.searchbox)
+    +Icon('search')
+    input(type='text', placeholder='Search')
+
+  ul.tabs(class=s.tabs)
+    each filter in filters
+      li.tab.filter(
+        class= (filter.text ==='All' ? 'is-active': '')
+        data-filter= filter.key
+      )
+        a
+          | #{filter.text}
+          if filter.count.length
+            span.count filter.count
+
+ul.providers-list
