@@ -1,14 +1,11 @@
 include ./icon.jade
 
 
-mixin Button(text, button_type)
-	//- Classnames to apply
-	- var cnames = 'waves-effect waves-light ';
-	- cnames += (button_type === 'flat' ? 'btn-flat': 'btn')
+mixin Button(tag, text)
+	//- Allow only these tags for button el
+	- tag = ['li', 'a', 'div', 'span', 'button'].indexOf(tag) > -1 ? tag : 'button';
 
-	a(class=cnames)&attributes(attributes)
-		if text
-			span.text #{text}
+	#{tag}(class='btn')&attributes(attributes)
 		if block
 			block
 
