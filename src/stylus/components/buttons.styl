@@ -1,0 +1,35 @@
+/**
+ * BUTTONS
+ *
+ */
+
+ui-button( bg_color = button_bg_color )
+  text_color = is_color_light(bg_color) ? #666 : #e8e8e8
+
+  display inline-block
+
+  padding 3px 12px
+  background-color bg_color
+  color rgba(text_color, 0.72)
+
+  border-radius 2px
+  border 1px rgba(#000, 0.12) solid
+
+  font-size 14px
+  font-weight 400
+  width auto
+
+  cursor pointer
+  no-select()
+  transition()
+
+  &:hover
+    background-color lighten(bg_color, 8%)
+    box-shadow 0px 2px 5px 0 rgba(#000, 0.16)
+
+  &:hover, &:active
+    color rgba(text_color, 1)
+    border-color rgba(#000, 0.2)
+
+  &:active
+    box-shadow inset 0px 3px 5px 0 rgba(#000, 0.16)
