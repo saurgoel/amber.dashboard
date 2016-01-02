@@ -5,22 +5,31 @@ theme_border = rgba(#000, 0.16)
 theme_widget = #fff
 
 
-
-color_base = color_deep_orange
+color_base = color_blue
 color_base_border = darken(color_base, 10%)
 
-is_theme_light = (luminosity(theme_base)) > (0.36)
-is_color_light = (luminosity(color_base)) > (0.36)
 
-theme_font = is_theme_light ? #888 : #6e6e6e
-color_font = is_color_light ? theme_font : #f2f2f2
+// Helper Mixins
+is_color_light(color_val)
+  return (luminosity(color_val) > (0.4))
+is_theme_light()
+  return (luminosity(theme_bg) > (0.4))
 
-header_bg_color = #fff
+
+theme_font = is_theme_light() ? #888 : #6e6e6e
+color_font = is_color_light(color_base) ? theme_font : #f2f2f2
+
 // header_bg_color   = color_indigo
-header_font_color = (luminosity(header_bg_color) > 0.36) ? color_base : #eee
+header_bg_color = #fff
+header_font_color = is_color_light(header_bg_color) ? color_base : #eee
 
 subheader_bg_color   = darken(header_bg_color, 8%)
 subheader_font_color = rgba(header_font_color, 0.8)
 
 sidebar_bg   = header_bg_color
-sidebar_text = ( luminosity(sidebar_bg) > 0.36 ) ? #888 : #dfdfdf
+sidebar_text = ( is_color_light(sidebar_bg) ? #888 : #dfdfdf )
+
+
+
+// Buttons
+button_bg_color = #fafafa
