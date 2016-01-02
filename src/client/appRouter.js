@@ -1,5 +1,5 @@
 import {AppRouter} from 'marionette';
-import {Global} from 'channels';
+import {_Global} from 'channels';
 
 const appRoutes = {
 
@@ -31,7 +31,10 @@ const appRoutes = {
 
   // ---- PRODUCTS PANEL ----
   'product': 'product',
-  'product/providers'   : 'productProviders',
+  'product/providers'          : 'productProvider',
+  'product/providers/:id'      : 'productProviderShow',
+  'product/providers/:id/edit' : 'productProviderEdit',
+
   'product/institutions': 'productInstitutions',
   'product/services' : 'productServices',
   'product/content'  : 'productContent',
@@ -48,8 +51,8 @@ class Router extends AppRouter {
   initialize(){
     this.appRoutes = appRoutes;
 
-    this.listenTo(Global, 'approuter:navigate', this.gotoRoute);
-    Global.reply('approuter', this);
+    this.listenTo(_Global, 'approuter:navigate', this.gotoRoute);
+    _Global.reply('approuter', this);
   }
 
   gotoRoute(route){

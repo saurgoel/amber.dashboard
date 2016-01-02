@@ -114,8 +114,14 @@ class AppController extends Controller {
 		ProductController(this.Content, {});
 	}
 
-	productProviders(){
+	productProvider(){
 		ProductController(this.Content, {mode: 'providers', action: 'list'})
+	}
+	productProviderShow(id){
+		ProductController(this.Content, {id, mode: 'providers', action: 'show'})
+	}
+	productProviderEdit(id){
+		ProductController(this.Content, {id, mode: 'providers', action: 'edit'})
 	}
 	productProducts(){
 		ProductController(this.Content, {mode: 'products', action: 'list'})
