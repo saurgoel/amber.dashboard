@@ -31,16 +31,19 @@ var ProvidersListView = CompositeView.extend({
   initialize(options){
     this.initial_id = options.id ? parseInt(options.id): null;
 
-    this.collection.fetch();
     this.listenTo(this.collection, 'sync', this.onCollectionSync);
     this.listenTo(_Notification, 'provider:selected', this.setItemActive);
+
+    this.collection.fetch();
   },
 
   onCollectionSync(){
     if (!this.initial_id)
       return
     var model = this.collection.findWhere({id: this.initial_id})
+
     _Notification.trigger('provider:selected', model);
+    this.scrollToModel(model);
   },
 
 
@@ -49,6 +52,13 @@ var ProvidersListView = CompositeView.extend({
     this.children.each(function(view){
       view.$el.toggleClass('is-active', model.id === view.model.id)
     });
+  },
+
+  scrollToModel(model){
+    var view = this.children.findByModel(model);
+    this.ui.list.animate({
+      scrollTop: view.el.offsetTop
+    }, 300);
   },
 
   selectFilter(e){
