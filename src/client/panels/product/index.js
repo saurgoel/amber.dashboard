@@ -16,13 +16,16 @@ var ProductPageLayout = LayoutView.extend({
     Content: '.region-content'
   },
 
-  initialize(){
+  initialize({subpanel}){
+    this.subpanel = subpanel;
     Radio.trigger('header', 'update:sub-title', 'Product', '/product');
   },
 
   onAttach(){
     this.headerView = new HeaderView();
     this.Header.show( this.headerView );
+    if (this.subpanel)
+      this.Content.show(this.subpanel)
   }
 
 });
