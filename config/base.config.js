@@ -12,7 +12,7 @@ module.exports = function(env){
 		},
 
 		resolve: {
-			extensions: ['', '.webpack.js', '.web.js', '.js', '.json'],
+			extensions: ['', '.webpack.js', '.web.js', '.js', '.json', '.styl'],
 		},
 
 		stats: {colors: true, chunks: false},

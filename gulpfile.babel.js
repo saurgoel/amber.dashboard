@@ -134,7 +134,7 @@ gulp.task('sync', ['serve'], cb => {
       middleware: [
         webpackDevMiddleware(clientBundler, {
           publicPath: config[0].output.publicPath,
-          stats: false
+          stats: {colors: true, chunks:false},
         }),
         webpackHotMiddleware(clientBundler)
       ]

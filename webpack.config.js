@@ -6,6 +6,7 @@ import AssetsPlugin from 'assets-webpack-plugin';
 // Stylus deps
 import nib from 'nib';
 import axis from 'axis';
+import rupture from 'rupture';
 import autoprefixer from 'autoprefixer-stylus';
 
 
@@ -19,6 +20,8 @@ const GLOBALS = {
 };
 
 const JADE_ROOT = path.resolve('./src/jade');
+const STYLE_LOADER = is_prod ? 'style-loader' : 'style-loader/useable';
+const CSS_LOADER = 'css-loader';
 
 // Get base config for environment
 var config = baseConfig({ is_prod });
@@ -27,12 +30,13 @@ var config_client = merge({}, config, {
 	target: 'web',
 	entry: {
 		main: [
-			...( is_prod ? [] : ['webpack-hot-middleware/client']),
+			...( is_prod ? [] : ['webpack-hot-middleware/client?reload=true']),
 			'./src/client/index',
 		],
 		vendors: [
 			'jquery', 'underscore',
-			'backbone', 'marionette', 'radio'
+			'backbone', 'marionette', 'radio',
+			'font-awesome', 'animate.css'
 		]
 	},
 	output: {
@@ -46,16 +50,16 @@ var config_client = merge({}, config, {
 		alias: {
 			marionette: 'backbone.marionette',
 			radio: 'backbone.radio',
-			jQuery: 'jquery'
+			jQuery: 'jquery',
 		}
 	},
 
 	module: {
 		loaders: [
 			...config.module.loaders,
-			{ test: /\.css$/,  loader: 'style-loader' },
-			{ test: /\.styl$/, loader: 'style-loader/useable!css-loader!stylus-loader' },
-			{ test: /\.jade$/, loader: 'jade-loader?root='+JADE_ROOT },
+			{ test: /\.css$/,  loader: 'style!css' },
+			{ test: /\.styl$/, loader: `${STYLE_LOADER}!${CSS_LOADER}!stylus-loader?sourceMap` },
+			{ test: /\.jade$/, loader: `jade-loader?root=${JADE_ROOT}` },
 			{ test: /\.js$/, loader: 'babel-loader', query: {compact: false} },
 			{ test: require.resolve('backbone.marionette'), loader: 'expose?Marionette'},
 			{ test: require.resolve('backbone.radio'), loader: 'expose?Radio' },
@@ -83,11 +87,10 @@ var config_client = merge({}, config, {
     ] : [])
 	],
 	stylus: {
-    use: [nib(), axis(), autoprefixer({browsers: ['last 2 versions']})],
+    use: [nib(), axis(), rupture(), autoprefixer({browsers: ['last 2 versions']})],
     import: [ path.resolve(__dirname, './src/stylus/index.styl') ],
     error: !is_prod ? true : false,
-    compress: !is_prod ? false: true,
-    'include css': !is_prod ? false : true
+    compress: !is_prod ? false: true
   }
 });
 
