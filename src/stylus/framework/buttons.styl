@@ -1,0 +1,19 @@
+
+
+// Buttons
+.btn
+  ui-button()
+.btn + .btn
+  margin-left (gutter_x/2)
+
+// Button Group
+.btn-group
+  .btn
+    border-radius 0
+  .btn:first-child
+    border-radius 2px 0 0 2px
+  .btn:last-child
+    border-radius 0 2px 2px 0
+  .btn + .btn
+    border-left none
+    margin-left 0
