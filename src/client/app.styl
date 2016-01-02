@@ -1,68 +1,48 @@
 // Setup Defaults
-global-reset()
+normalize-css()
 border-box-html()
 
-@import '~font-awesome/css/font-awesome.min.css'
-@import '~animate.css/animate.min.css'
-// @import '~materialize-css/dist/css/materialize.min.css'
-// @import '~material-design-lite/material.css'
 
+
+/* Framework */
+@require '/framework/index'
+
+/* App Styles */
 full-viewport()
-	width 100vw
-	height 100vh
+  width 100vw
+  height 100vh
 
 body
-	background-color theme_bg
-	font-size font_size
-	font-family font_stack
-	line-height line_height
+  background-color theme_bg
+  font-size font_size
+  font-family font_stack
+  line-height line_height
 
-	color theme_font
-	full-viewport()
+  color theme_font
+  full-viewport()
 
-	#root
-		full-viewport()
+  #root
+    full-viewport()
 
-	#app-header
-		absolute top left right
-		z-index z5
-		height header_height
+  #app-header
+    absolute top left right
+    z-index z5
+    height header_height
 
-	#app-content
-		padding-top header_height
-		absolute top left right bottom
-		z-index z0
-		overflow hidden
-		transition()
+  #app-content
+    padding-top header_height
+    absolute top left right bottom
+    z-index z0
+    overflow hidden
+    transition()
 
-	#app-sidebar
-		width sidebar_width
-		absolute top left (-1*sidebar_width) bottom
-		z-index z6
-		opacity 0.6
-		flex-vertical()
-		transition left time_2x ease
-		&.is-active
-			left 0
-			opacity 1
-
-
-// Default Link Styles
-a[href]
-	text-decoration none
-	color inherit
-	display inline-block
-	&:hover, &:active, &:focus
-		color inherit
-
-
-// Region, Layouts and Views
-
-
-// :not([class^='layout-']) > [class^='region-']
-// 	flex 1
-// 	flex-container column
-
-// [class^='region-'] > [class^='view-']
-// 		flex 1
-// 		flex-container column
+  #app-sidebar
+    width sidebar_width
+    absolute top left (-1*sidebar_width) bottom
+    z-index z6
+    opacity 0.6
+    flex-vertical()
+    transition left time_2x ease
+    &.is-active
+      left 0
+      opacity 1
