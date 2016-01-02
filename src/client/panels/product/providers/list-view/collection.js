@@ -1,16 +1,24 @@
-import {Collection} from 'backbone';
-import {Global} from 'channels';
-import Model from './model';
+import {Model, Collection} from 'backbone';
+import {_Global} from 'channels';
+
+const config = _Global.request('config');
 
 
-const config = Global.request('config');
+var ProductProvider = Model.extend({
 
-var ProvidersCollection  = Collection.extend({
-  model: Model,
+  parse(resp){
+    return _.extend({}, resp.data, _.omit(resp, 'data'))
+  }
+
+});
+
+
+var ProductProviders  = Collection.extend({
+  model: ProductProvider,
 
   url(){
-    return `${config.products_api_url}/providers/request.json`
-  }
+    return `${config.products_api_url}/providers/requests.json`
+  },
 
   parse(response){
     this.meta = response.data.meta;
@@ -18,4 +26,4 @@ var ProvidersCollection  = Collection.extend({
   }
 })
 
-export default ProvidersCollection;
+export default ProductProviders;
