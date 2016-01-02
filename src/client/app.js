@@ -1,6 +1,6 @@
 import {Application, RegionManager} from 'marionette';
 // import Materialize from 'materialize-css';
-import {Global} from 'channels';
+import {_Global} from 'channels';
 
 import AppController from './appController';
 import AppRouter from './appRouter';
@@ -16,10 +16,9 @@ const regions = {
 class App extends Application {
 	initialize(){
 		this.rootView = new RegionManager({el: '#root', regions});
-		Global.reply('root', this.rootView);
+		_Global.reply('root', this.rootView);
 
 		style.use();
-		this.listenTo(this, 'destroy', style.unuse);
 	}
 
 	onBeforeStart(){
@@ -86,12 +85,6 @@ class App extends Application {
 		});
 	}
 
-}
-
-
-// HMR Fix
-if (__DEV__ && module.hot){
-  module.hot.accept();
 }
 
 

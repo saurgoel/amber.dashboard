@@ -1,18 +1,18 @@
+// Automatically added to head
+require('font-awesome');
+require('animate.css');
 
 // Expose these
-window.$ = window.jQuery = require('jquery');
 window._ = require('underscore');
+window.$ = window.jQuery = require('jquery');
 
-// Inject into head
-// require('style/url!file!font-awesome/css/font-awesome.min.css');
-// require('style/url!file!animate.css/animate.min.css');
-
-
+// Load libs
 var Backbone = require('backbone');
 var Marionette = require('marionette');
 var Radio = require('radio');
 
 
+// Overrides
 (function(){
   if (__DEV__)
     Radio.DEBUG = true;
@@ -23,6 +23,9 @@ var Radio = require('radio');
   Marionette.Behaviors.behaviorsLookup = ()=> window.Behaviors;
 })();
 
+
+
+// App Start
 function start(config){
   Radio.reply('global', 'config', config);
   app.start(config);
