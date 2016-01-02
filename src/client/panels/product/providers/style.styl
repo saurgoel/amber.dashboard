@@ -1,0 +1,16 @@
+:local(.self)
+  flex 1
+  flex-container row
+
+  .region-list
+    flex-container column
+    width 40vw
+    transition()
+    animation fadeInLeft time_2x $ease-in-swift
+
+  .region-details
+    flex 1
+
+  +tablet()
+    .region-list
+      width 50vw
