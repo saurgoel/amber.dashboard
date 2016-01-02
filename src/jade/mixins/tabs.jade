@@ -1,0 +1,20 @@
+mixin Tabs(items)
+  //- Filters properties in object by regex
+  - var filterProps = function(obj, regex){ return _.keys(obj).filter(function(x){ return regex.test(x) })}
+
+  //- Extract li-* keys from object
+  - var liProps = filterProps(attributes, /^li-\w+/);
+
+  //- li-* classes on li, others on ul
+  - var ulAttrs = _.omit(attributes, liProps);
+  - var liAttrs = _.pick(attributes, liProps);
+
+  //- - console.log(ulAttrs, liAttrs, attributes);
+
+  ul.tabs&attributes(ulAttrs)
+    each item in items
+      li.tab&attributes(liAttrs)
+        if item.href
+          a(href= item.href) #{item.text}
+        else
+          | #{item.text}
