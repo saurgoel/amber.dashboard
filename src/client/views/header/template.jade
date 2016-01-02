@@ -10,14 +10,11 @@ mixin NormalHeader()
   .sidebar-toggle
     +Icon('bars')
   .brand-logo
-    a.brand(href='/') Amber2
+    a.brand(href='/') Amber
     a.subpanel
   .flex-space
-  +ButtonWithIcon('', 'power-off')(
-    class='user-button'
-    href= url
-    title= 'Logout'
-  )
+  a.logout-button(href = url, title='Logout')
+    +Icon('power-off')
 
 //- Render this
 +NormalHeader
