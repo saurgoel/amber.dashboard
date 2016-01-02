@@ -1,18 +1,19 @@
 include ./icon.jade
 
 
-mixin Button(tag, text)
-	//- Allow only these tags for button el
-	- tag = ['li', 'a', 'div', 'span', 'button'].indexOf(tag) > -1 ? tag : 'button';
+mixin Button(text, options)
+	-
+		var options = options || {};
+		var tag  = options.tag || null;
+		var tags = ['li', 'a', 'div', 'span', 'button'];
+		tag = tags.indexOf(tag) > -1 ? tag : 'button';
 
 	#{tag}(class='btn')&attributes(attributes)
 		if block
 			block
+		| #{text}
 
-mixin ButtonWithIcon(text, icon, button_type)
 
-	+Button(text, button_type)(
-		class=attributes.class
-		href=attributes.href
-	)
+mixin ButtonWithIcon(text, icon, options)
+	+Button(text, options)
 		+Icon(icon)
