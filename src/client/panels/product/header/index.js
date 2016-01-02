@@ -22,7 +22,9 @@ var ProductServiceHeader = ItemView.extend({
   onRender(){
     let frag = Backbone.history.getFragment();
     this.$('.tab a').each(function(){
-      $(this).parent().toggleClass('is-active', $(this).attr('href') === `/${frag}`)
+      let url = $(this).attr('href');
+      url = url[0] === '/' ? url.substr(1) : url;
+      $(this).parent().toggleClass('is-active', frag.indexOf(url) > -1)
     });
   }
 });
