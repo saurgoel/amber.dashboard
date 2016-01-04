@@ -10,6 +10,18 @@ header_button()
 	height 100%
 	// border-bottom 1px rgba(#000, 0.36) solid
 
+	.ajax-loader
+		absolute top left right
+		z-index z6
+		opacity 1
+		background-color color_base
+		transition width
+
+	.ajax-loader.is-loading
+		width 100%
+		opacity 1
+
+
 	.flex-space
 		flex 1
 
