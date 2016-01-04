@@ -3,6 +3,23 @@
 // Buttons
 .btn
   ui-button()
+  > i
+    font-size 1.23em
+    vertical-align text-top
+    & + .text
+      margin-left 8px
+
+.btn.btn-flat
+  border-width 0
+  background none
+  &:hover, &:active
+    color color_base
+    box-shadow none
+    transform scale(1.2)
+
+
+
+
 .btn + .btn
   margin-left (gutter_x/2)
 
