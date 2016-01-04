@@ -1,3 +1,17 @@
-h2 #{name}
-h4 #{phone}
+include /mixins/button.jade
 
+.details-header
+  +ButtonWithIcon('Send Email', 'envelope')
+  +ButtonWithIcon('Send SMS', 'mobile-phone')
+
+.details-content
+  h2.name #{name}
+  h4.phone #{phone}
+  span.email #{email}
+  p.description #{description}
+
+  p.personal-statement #{personal_statement}
+
+  .flex-column
+    h2 Services
+    p #{JSON.stringify(services_params)}

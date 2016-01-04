@@ -13,13 +13,15 @@ var ProviderDetailsView = ItemView.extend({
   behaviors: {UseCSS: {style}},
   model: new Model,
 
-  initialize(options){
+  initialize({id, mode}){
+    // mode is 'show' or 'edit'
+    this.model.set({mode});
+    this.listenTo(this.model, 'change', this.render);
     this.listenTo(_Notification, 'provider:selected', this.update);
   },
 
   update(model){
-    this.model = model;
-    this.render();
+    this.model.set(model.toJSON());
   }
 });
 
