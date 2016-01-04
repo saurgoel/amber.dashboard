@@ -8,12 +8,18 @@ mixin Button(text, options)
 		var tags = ['li', 'a', 'div', 'span', 'button'];
 		tag = tags.indexOf(tag) > -1 ? tag : 'button';
 
-	#{tag}(class='btn')&attributes(attributes)
+		var cx = _.compact([
+			'btn',
+			options.type == 'flat' && 'btn-flat'
+		]).join(' ');
+
+	#{tag}(class=cx)&attributes(attributes)
 		if block
 			block
-		| #{text}
+		if text
+			span.text #{text}
 
 
 mixin ButtonWithIcon(text, icon, options)
-	+Button(text, options)
+	+Button(text, options)&attributes(attributes)
 		+Icon(icon)
