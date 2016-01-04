@@ -1,7 +1,8 @@
 .item-inner
   .item-details
     span.item-name #{name}
-    span.item-updated Last updated: #{updated_at}
+    span.item-updated Last updated: #{time_updated}
 
+  //- If `provider_id` is present: user is active
   if provider_id
-    .active-chip ACTIVE
+    .active-chip Active
