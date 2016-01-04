@@ -19,8 +19,8 @@ is_theme_light()
 theme_font = is_theme_light() ? #888 : #6e6e6e
 color_font = is_color_light(color_base) ? theme_font : #f2f2f2
 
-// header_bg_color   = color_indigo
-header_bg_color = #fff
+// header_bg_color   = color_base
+header_bg_color = #393939
 header_font_color = is_color_light(header_bg_color) ? color_base : #eee
 
 subheader_bg_color   = darken(header_bg_color, 8%)
@@ -28,7 +28,6 @@ subheader_font_color = rgba(header_font_color, 0.8)
 
 sidebar_bg   = header_bg_color
 sidebar_text = ( is_color_light(sidebar_bg) ? #888 : #dfdfdf )
-
 
 
 // Buttons

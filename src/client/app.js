@@ -87,5 +87,10 @@ class App extends Application {
 
 }
 
+if (module.hot){
+	module.hot.accept();
+
+}
+
 
 export default App;
