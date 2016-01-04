@@ -2,20 +2,27 @@ include /mixins/icon.jade
 include /mixins/button.jade
 
 .control-bar
+  .top-bar
+    .search-box(class=s.searchbox)
+      +Icon('search')
+      input(type='text', placeholder='Search')
+    .pagination-wrap(class=s.pagination)
+      +ButtonWithIcon('', 'chevron-left', {type: 'flat'})(class='go-prev')
+      span.details
+        span.meta-range x-xx
+        | &nbsp;&nbsp; of &nbsp;&nbsp;
+        span.meta-count total
+      +ButtonWithIcon('', 'chevron-right', {type: 'flat'})(class='go-next')
 
-  .search-box(class=s.searchbox)
-    +Icon('search')
-    input(type='text', placeholder='Search')
 
   ul.tabs(class=s.tabs)
-    each filter in filters
+    each filter,key in filters
       li.tab.filter(
         class= (filter.text ==='All' ? 'is-active': '')
-        data-filter= filter.key
+        data-filter= key
       )
         a
           | #{filter.text}
-          if filter.count.length
-            span.count filter.count
+          span.count
 
 ul.providers-list

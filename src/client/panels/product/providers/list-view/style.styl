@@ -3,40 +3,74 @@
   flex-container column
   border-right 1px theme_border solid
   background-color theme_widget
-
   .control-bar
     padding 0 20px
-    border-bottom 1px rgba(#000, 0.2) solid
+    border-bottom 1px color_base solid
     shadow()
     position relative
     z-index z2
+    // background-color color_base
 
   .providers-list
     overflow-y auto
     height 30vh
     flex 1
-    background-color darken(theme_widget, 2%)
     position relative
     z-index z1
+
+  .top-bar
+    padding 10px 0
+    flex-container row
+    .search-box
+      flex 1
+    .pagination-wrap
+      margin-left 20px
+      text-align right
+
+:local(.pagination)
+  font-size 14px
+  font-weight bold
+  margin-right -12px
+  .details
+    margin 0 8px
+    color #bbb
+
+
 
 :local(.tabs)
   display block
   margin-top 12px
   margin-left (-1*gutter_x)
+  a
+    position relative
+  .count
+    absolute top right -8px
+    ui-label color_base
+    &:empty
+      display none
+
 
 
 :local(.searchbox)
   display block
   position relative
-  margin-top 12px
-
+  &:hover
+    i
+      color color_base
   i
     font-size 16px
-    absolute top 10px left 10px
+    absolute top 10px right 10px
     opacity 0.7
 
   input
-    padding-left 32px
+    width 100%
+    padding-right 32px
+    transition()
+    &:hover, &:focus, &:active
+      border-color color_base
+    &:focus
+      inset-shadow()
+
 
 
 
@@ -50,6 +84,9 @@
     font-weight 300
     position relative
     cursor pointer
+  &:first-child
+    .item-inner
+      border-top 1px theme_border solid
   &:hover
     .item-inner
       border-left-color theme_font
@@ -71,10 +108,8 @@
     opacity 0.6
 
   .active-chip
-    border-radius 2px
     padding 4px 14px
     font-weight bolder
-    color #fff
     font-size font_size
     absolute top 20px right 20px
-    background-color rgba(color_green, 0.8)
+    color color_green
