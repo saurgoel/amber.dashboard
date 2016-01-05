@@ -20,11 +20,14 @@ var ListView = CompositeView.extend({
     this.listenTo(this.collection, 'sync', this._onCollectionSync);
   },
 
-  _onCollectionRequest(){
+  onCollectionRequest(){
     Radio.trigger('global', 'loader:start');
-  }
-  _onCollectionSync(){
+  },
+  onCollectionSync(){
     Radio.trigger('global', 'loader:stop');
+  },
+  scrollToModel(){
+
   }
 
 });

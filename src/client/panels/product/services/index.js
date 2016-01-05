@@ -1,6 +1,6 @@
-import {ItemView} from 'marionette';
+import {CompositeView} from 'marionette';
 
-var ProductServicesView = ItemView.extend({
+var ProductServicesView = CompositeView.extend({
   template: _.template('<h2> Product Service </h2>')
 })
 export default ProductServicesView;
