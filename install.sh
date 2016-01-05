@@ -1,5 +1,5 @@
 # Install NPM Deps
-# npm install
+npm install
 
 echo "" \
   "var fixes = {};" \
