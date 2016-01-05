@@ -20,7 +20,7 @@ const GLOBALS = {
 };
 
 const JADE_ROOT = path.resolve('./src/jade');
-const STYLE_LOADER = is_prod ? 'style-loader' : 'style-loader/useable';
+const STYLE_LOADER = 'style-loader/useable';
 const CSS_LOADER = 'css-loader';
 
 // Get base config for environment
@@ -69,6 +69,7 @@ var config_client = merge({}, config, {
 	plugins: [
 		...config.plugins,
 		new webpack.DefinePlugin(GLOBALS),
+		new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
 		new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors-bundle.js'),
 		new AssetsPlugin({ path: dirs.dest_root, filename: 'assets.json' }),
 
