@@ -1,13 +1,12 @@
 mixin Tabs(items)
-  //- Filters properties in object by regex
-  - var filterProps = function(obj, regex){ return _.keys(obj).filter(function(x){ return regex.test(x) })}
+  -
+    var filterProps = function(obj, regex){ return _.keys(obj).filter(function(x){ return regex.test(x) })}
+    //- Extract li-* keys from object
+    var liProps = filterProps(attributes, /^li-\w+/);
 
-  //- Extract li-* keys from object
-  - var liProps = filterProps(attributes, /^li-\w+/);
-
-  //- li-* classes on li, others on ul
-  - var ulAttrs = _.omit(attributes, liProps);
-  - var liAttrs = _.pick(attributes, liProps);
+    //- li-* classes on li, others on ul
+    var ulAttrs = _.omit(attributes, liProps);
+    var liAttrs = _.pick(attributes, liProps);
 
   //- - console.log(ulAttrs, liAttrs, attributes);
 
