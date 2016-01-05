@@ -1,11 +1,12 @@
 :local(.self)
   flex 1
   flex-container column
-  border-right 1px theme_border solid
+
   background-color theme_widget
   .control-bar
     padding 0 20px
     border-bottom 1px color_base solid
+    border-right 1px theme_border solid
     shadow()
     position relative
     z-index z2
@@ -17,7 +18,7 @@
     flex 1
     position relative
     z-index z1
-
+    background-color #eee
   .top-bar
     padding 10px 0
     flex-container row
@@ -44,8 +45,8 @@
   a
     position relative
   .count
-    absolute top right -8px
-    ui-label color_base
+    absolute top right 2px
+    ui-label color_base invert
     &:empty
       display none
 
@@ -76,17 +77,19 @@
 
 
 :local(.self-child)
+  bg_list_active   = #fff
+  bg_list_inactive = #eee
   .item-inner
-    border-bottom 1px theme_border solid
-    background-color theme_widget
+    margin-bottom -1px
+    background-color bg_list_inactive
     padding 8px 20px
-    border-left 4px transparent solid
+
+    border 1px theme_border solid
+
     font-weight 300
     position relative
     cursor pointer
-  &:first-child
-    .item-inner
-      border-top 1px theme_border solid
+
   &:hover
     .item-inner
       border-left-color theme_font
@@ -97,7 +100,10 @@
       color color_base
   &.is-active
     .item-inner
-      background-color rgba(color_base, 0.1)
+      background-color bg_list_active
+  &.is-hidden
+    display none
+    animation fadeOut time_2x
 
   .item-name
     font-size 20px

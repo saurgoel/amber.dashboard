@@ -37,7 +37,7 @@ var ProvidersListView = CompositeView.extend({
     'click @ui.filter': 'selectFilter',
     'click @ui.next': 'paginateNext',
     'click @ui.prev': 'paginatePrev',
-    'keyup @ui.search': 'filterByText'
+    'input @ui.search': 'filterByText'
   },
 
   initialize(options){
@@ -53,7 +53,13 @@ var ProvidersListView = CompositeView.extend({
 
   filterByText(e){
     let $el = $(e.currentTarget);
-    console.log('Filtering... ', $el.val())
+    let str  = $el.val().toLowerCase().replace(/\s/g, '');
+
+    this.children.each(function(view){
+      let str2 = view.model.get('name').toLowerCase().replace(/\s/g, '');
+      let valid = str.length ? !str2.includes(str) : false;
+      view.$el.toggleClass('is-hidden', valid)
+    });
   },
 
   onBeforeRender(){
