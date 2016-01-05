@@ -10,7 +10,7 @@ ui-input()
     outline none
 
 
-ui-label(bg_color = color_base)
+ui-label(bg_color = color_base, alternate = false)
   display inline-block
   font-size 11px
   font-weight 600
@@ -21,5 +21,8 @@ ui-label(bg_color = color_base)
   vertical-align super
   border-radius 2px
 
-  color #fff
-  background-color bg_color
+  if alternate == invert
+    color bg_color
+  else
+    color #fff
+    background-color bg_color
